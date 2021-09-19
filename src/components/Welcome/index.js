@@ -7,11 +7,13 @@ import Head from './Head';
 import Whyus from './Whyus';
 import '../../assets/css/style.css'
 import Header from './Header';
+import Hero from './Hero';
 
 function index() {
     return (
         <div>
             <Head />
+            <Hero />
             <main id="main">
                 <Header />
                 <Whyus />
