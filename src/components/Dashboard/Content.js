@@ -1,27 +1,29 @@
 import React, { useState } from 'react'
 import Card from './Card'
+import './dash.scss'
+
 function Content() {
     const [state, setstate] = useState([
-        { id: 1, name: "one" },
-        { id: 2, name: "two" },
-        { id: 3, name: "three" },
-        { id: 4, name: "four" },
-        { id: 5, name: "five" },
-        { id: 6, name: "six" },
-        { id: 7, name: "seven" },
-        { id: 8, name: "eight" }
-    ]);
+        { _id: 1 },
+        { _id: 2 },
+        { _id: 3 },
+        { _id: 4 },
+        { _id: 5 },
+        { _id: 6 },
+        { _id: 7 },
+        { _id: 8 }
+    ])
 
     return (
-        <div className="d-flex flex-wrap overflow-scroll" style={{ margin: "5px ", padding: "50px", overflow: "hidden" }}>
-            {
-                state.map(card => {
-                    return (
-                        <Card id={card.id} {...card} />
-                    );
-                })
-            }
-        </div>
+        <div className="dash-container">
+            <div className="dash-content">
+                {
+                    state.map(card => {
+                        return <Card key={card._id} {...card} />
+                    })
+                }
+            </div>
+        </div >
     )
 }
 

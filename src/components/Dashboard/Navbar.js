@@ -1,51 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-    Dropdown
+    Dropdown,
+    Card,
+    Button
 } from 'react-bootstrap'
+import Avatar from '../../assets/img/Avatar/programmer.png'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
+    const [profile, setprofile] = useState({
+        name: "USER",
+        imageUrl: "",
+    })
+
+    const handleSignOut = () => {
+        console.log("Sign Out")
+    }
     return (
-        <header className="p-3 border-bottom">
-            <div className="container">
+        <header className="p-3 bg-dark text-white">
+            <div className="container-fluid">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                        <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink href="#bootstrap"></use></svg>
+                    <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink="true" href="#bootstrap"></use></svg>
                     </a>
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" className="nav-link px-2 link-secondary">Overview</a></li>
-                        <li><a href="#" className="nav-link px-2 link-dark">Inventory</a></li>
-                        <li><a href="#" className="nav-link px-2 link-dark">Customers</a></li>
-                        <li><a href="#" className="nav-link px-2 link-dark">Products</a></li>
+                        <li><Link to="/" className="nav-link px-2 text-secondary"> HOME </Link></li>
+                        <li><Link to="#" className="nav-link px-2 text-white">ABOUT</Link></li>
+                        <li><Link to="#" className="nav-link px-2 text-white"> EXAM</Link></li>
                     </ul>
 
-                    <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex">
-                        <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
-                        <button type="button" className="btn btn-primary" > Search </button>
-                    </form>
-                    {/* <div className="dropdown">
-                        <a href="#" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                            <strong>mdo</strong>
-                        </a>
-                        <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                            <li><a className="dropdown-item" href="#">New project...</a></li>
-                            <li><a className="dropdown-item" href="#">Settings</a></li>
-                            <li><a className="dropdown-item" href="#">Profile</a></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div> */}
-                    <Dropdown>
-                        <Dropdown.Toggle variant="" id="dropdown-basic" className="reactButton" >
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                            <strong>mdo</strong>
+                    <Dropdown className="dropdown profile">
+                        <Dropdown.Toggle variant="outline-primary" class="btn btn-secondary dropdown-toggle rounded-circle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src={Avatar} alt="" width="40px" heigth="40px" className="circle-rounded" />
                         </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Sign Out</Dropdown.Item>
+                        <Dropdown.Menu className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <Dropdown.Item>
+                                <Card style={{ width: '18rem', paddingTop: "10px" }} className="d-flex flex-column justify-content-center align-items-center">
+                                    <Card.Img variant="top" src={Avatar} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
+                                    <Card.Body className="text-center">
+                                        <Card.Title >{profile.name}</Card.Title>
+                                        <Card.Text>
+                                            HAPPY TO SEE U
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer className="text-center">
+                                        <Button variant="outline-danger" size="lg" onClick={handleSignOut}>Sign Out</Button>
+                                    </Card.Footer>
+                                </Card>
+                            </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -53,5 +56,4 @@ function Navbar() {
         </header>
     )
 }
-
 export default Navbar
