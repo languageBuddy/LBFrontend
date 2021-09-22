@@ -1,10 +1,16 @@
 import React from 'react'
+import './dash.scss'
+import { Link } from 'react-router-dom'
 
 function Card(props) {
     return (
-        <div className="card d-flex justify-content-center align-items-center" style={{ width: "250px", height: "200px", margin: "20px" }}>
-            <h3> {props.name}</h3>
-        </div>
+        <Link to={{ pathname: `/dashboard/learn/` + props._id }} className="text-decoration-none">
+            <div className="dash-card">
+                <div className="dash-icon"><i className="material-icons md-36">face</i></div>
+                <p className="dash-title">Profile {props._id}</p>
+                <p className="dash-text"> Click to see or edit your profile page.</p>
+            </div>
+        </Link>
     )
 }
 
