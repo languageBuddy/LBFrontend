@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Main from './components/Welcome/index'
 import Login from './components/Auth/SignInSide'
 import Register from './components/Auth/SignUp'
 import Dashboard from './components/Dashboard/index'
 import Learn from './components/Dashboard/Learn'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 function App() {
   return (
