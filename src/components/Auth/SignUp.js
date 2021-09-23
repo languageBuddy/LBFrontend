@@ -13,8 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleButton from 'react-google-button'
-import {Link as Rlink} from 'react-router-dom';
-
+import { Link as Rlink } from 'react-router-dom';
+import RegisterImage from '../../assets/svgs/registerImage.svg'
 
 function Copyright(props) {
   return (
@@ -52,7 +52,7 @@ export default function SignUp() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${RegisterImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -74,17 +74,17 @@ export default function SignUp() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-            Welcome!
+              Welcome!
             </Typography>
-            <GoogleButton label='Signup with Google' style={{marginTop:"15px"}}
-  onClick={() => { console.log('Google button clicked') }}
-/>
+            <GoogleButton label='Signup with Google' style={{ marginTop: "15px" }}
+              onClick={() => { console.log('Google button clicked') }}
+            />
 
-<Typography component="h6" style={{marginTop:"15px"}}>
-            Or
+            <Typography component="h6" style={{ marginTop: "15px" }}>
+              Or
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-            <TextField
+              <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -118,7 +118,7 @@ export default function SignUp() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Button style={{borderRadius:"99px",fontWeight:"80"}}
+              <Button style={{ borderRadius: "99px", fontWeight: "80" }}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -127,15 +127,15 @@ export default function SignUp() {
                 Signup
               </Button>
               <Grid container>
-                
-              <Grid item>
-                  <Rlink to="/">
-                  <Link  variant="body2">
-                    {"Already have an account? Sign In"}
-                  </Link>
+
+                <Grid item>
+                  <Rlink to="/login">
+                    <Link variant="body2">
+                      {"Already have an account? Sign In"}
+                    </Link>
                   </Rlink>
                 </Grid>
-            
+
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
