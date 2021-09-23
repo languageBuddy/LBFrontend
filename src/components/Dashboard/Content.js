@@ -11,7 +11,7 @@ function Content() {
             <div className="dash-content">
                 {
                     audioFiles && audioFiles.map(module => {
-                        return <Module key={module.module_id} {...module} />
+                        return <Module key={module.moduleId} {...module} />
                     })
                 }
             </div>

@@ -11,3 +11,37 @@ npm install @mui/icons-material signin with google button
 npm install --save react-google-button
 reactstrap library installation-
 npm install --save reactstrap react react-dom
+
+
+# DataBase Schema
+
+audio = [
+    {
+        moduleId : INT,
+        submodule : [SubmoduleObj]
+    }
+]
+
+SubmoduleObj = {
+    submoduleId : INT
+}
+
+# for Example : 
+audioFiles = [
+    {
+        moduleId : 1,
+        submodule : [
+            {submoduleId : 1},
+            {submdouleId : 2},
+            {submoduleId : 3}
+        ]
+    },
+    {
+        moduleId : 2,
+        submodule : [
+            {submoduleId : 1},
+            {submdouleId : 2},
+            {submoduleId : 3}
+        ]
+    }
+]

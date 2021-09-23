@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 function Learn() {
     const { id } = useParams()
     const audio = useSelector(state => state.audio)
+    console.log(audio)
     const [state, setstate] = useState(audio[id])
     return (
         <div className="dash-container">
