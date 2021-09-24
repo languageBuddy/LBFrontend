@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 function Hero() {
     return (
@@ -6,7 +7,7 @@ function Hero() {
             <div className="container">
                 <h1>Welcome to <br /> Language Buddy</h1>
                 <h2>We are team <br /> of talented designers making websites</h2>
-                <a href="#about" className="btn-get-started scrollto">Get Started</a>
+                <Link to="/login" className="btn-get-started scrollto">Get Started</Link>
             </div>
         </section>
     )

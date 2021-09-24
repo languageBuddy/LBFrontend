@@ -89,7 +89,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="name"
-                label="Enter your user-name"
+                placeholder="User-name"
                 name="name"
                 autoComplete="name"
                 autoFocus
@@ -99,7 +99,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -109,7 +109,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
