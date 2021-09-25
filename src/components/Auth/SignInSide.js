@@ -13,27 +13,51 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleButton from 'react-google-button'
-import {Link as Rlink} from 'react-router-dom';
-import { borderRadius } from '@mui/system';
+import { Link as Rlink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 
+const Login = ({ history }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+  useEffect(() => {
+    const token = localStorage.getItem('token');
 
-const theme = createTheme();
+    if (token) {
+      history.push('/dashboard')
+    }
+  }, [])
 
-export default function SignInSide() {
+  const onLogin = () => {
+    setLoading(true)
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        localStorage.setItem('token', userCredential._tokenResponse.idToken);
+        history.push('/dashboard')
+      })
+      .catch(e => alert(e.message))
+      .finally(() => setLoading(false))
+  }
+
+  function Copyright(props) {
+    return (
+      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Your Website
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
+  const theme = createTheme();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -76,14 +100,14 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-            Welcome back!
+              Welcome back!
             </Typography>
-            <GoogleButton style={{marginTop:"15px"}}
-  onClick={() => { console.log('Google button clicked') }}
-/>
+            <GoogleButton style={{ marginTop: "15px" }}
+              onClick={() => { console.log('Google button clicked') }}
+            />
 
-<Typography component="h6" style={{marginTop:"15px"}}>
-            Or
+            <Typography component="h6" style={{ marginTop: "15px" }}>
+              Or
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -91,32 +115,35 @@ export default function SignInSide() {
                 required
                 fullWidth
                 id="email"
-                placeholder="Email Address"
+                label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={e => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
-                placeholder="Password"
+                label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={e => setPassword(e.target.value)}
               />
-              <FormControlLabel 
+              <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Button style={{borderRadius:"99px",fontWeight:"80"}}
+              <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={onLogin}
               >
-                Sign In
+                {loading ? 'Logging you in ...' : 'Login'}
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -126,9 +153,9 @@ export default function SignInSide() {
                 </Grid>
                 <Grid item>
                   <Rlink to="/register">
-                  <Link  variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                    <Link variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
                   </Rlink>
                 </Grid>
               </Grid>
@@ -140,3 +167,5 @@ export default function SignInSide() {
     </ThemeProvider>
   );
 }
+
+export default Login;
