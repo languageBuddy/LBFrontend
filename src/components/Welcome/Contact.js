@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import {
+    Button
+} from 'reactstrap'
 
 function Contact() {
 
@@ -79,7 +82,7 @@ function Contact() {
                                 <div className="error-message"></div>
                                 <div className="sent-message">Your message has been sent. Thank you!</div>
                             </div>
-                            <div className="text-center"><button onClick={HandleSubmit}>Send Message</button></div>
+                            <div className="text-center"> <Button color="primary" onClick={HandleSubmit}>Send Message</Button></div>
                         </form>
 
                     </div>
