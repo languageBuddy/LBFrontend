@@ -1,14 +1,24 @@
 
 const initalState = {
-    counter: 10
+    currentQuestion: 0,
+    score: 0,
+    showscore: false
 }
 
 function counterReducer(state = initalState, action) {
     switch (action.type) {
-        case 'INCREMENT':
-            return { counter: state.counter + 1 };
-        case 'DECREMENT':
-            return { counter: state.counter - 1 };
+        case 'INCREMENT_QUESTION_NO':
+            return { ...state, currentQuestion: state.currentQuestion + action.payload };
+        case 'DECREMENT_QUESTION_NO':
+            return { ...state, currentQuestion: state.currentQuestion - action.payload };
+        case 'INCREMENT_SCORE':
+            return { ...state, score: state.score + action.payload };
+        case 'DECREMENT_SCORE':
+            return { ...state, score: state.score - action.payload };
+        case 'SHOW_RESULT':
+            return { ...state, showscore: action.payload }
+        case 'RESET':
+            return initalState
         default:
             return state;
     }
