@@ -19,7 +19,7 @@ import GoogleButton from 'react-google-button'
 import { Link as Rlink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
+import LoginImg from '../../assets/img/Auth/loginImage.svg'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -50,8 +50,8 @@ const Login = ({ history }) => {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
+        <Link color="inherit" href="https://github.com/languageBuddy/LBFrontend.git" target="_blank">
+          LanguageBuddy
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -81,7 +81,7 @@ const Login = ({ history }) => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${LoginImg})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -118,7 +118,7 @@ const Login = ({ history }) => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -129,7 +129,7 @@ const Login = ({ history }) => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"

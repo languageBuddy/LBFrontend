@@ -20,6 +20,7 @@ import GoogleButton from 'react-google-button'
 import { Link as RLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import RegisterImg from '../../assets/img/Auth/registerImage.svg'
 
 const Signup = ({ history }) => {
   const [name, setName] = useState("");
@@ -52,8 +53,8 @@ const Signup = ({ history }) => {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
+        <Link color="inherit" href="https://github.com/languageBuddy/LBFrontend.git" target="_blank">
+          LanguageBuddy
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -83,7 +84,7 @@ const Signup = ({ history }) => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${RegisterImg})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -120,7 +121,7 @@ const Signup = ({ history }) => {
                 required
                 fullWidth
                 id="name"
-                label="Name"
+                placeholder="Name"
                 name="name"
                 autoComplete="name"
                 autoFocus
@@ -131,7 +132,7 @@ const Signup = ({ history }) => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -142,7 +143,7 @@ const Signup = ({ history }) => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
