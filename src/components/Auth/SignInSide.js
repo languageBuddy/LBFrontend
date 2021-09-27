@@ -18,7 +18,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import GoogleButton from 'react-google-button'
 import { Link as Rlink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import LoginImg from '../../assets/img/Auth/loginImage.svg'
 
 const Login = ({ history }) => {
@@ -26,14 +26,33 @@ const Login = ({ history }) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  const SignInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        updateProfile(auth.currentUser, { displayName: credential.name })
+          .then(() => history.push('/dashboard'))
+          .catch((e) => alert(e.message))
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        alert(error.message);
+        // ...
+      }).finally(() => setLoading(false));
 
-    if (token) {
-      history.push('/dashboard')
-    }
-  }, [])
-
+  }
   const onLogin = () => {
     setLoading(true)
     const auth = getAuth();
@@ -106,7 +125,7 @@ const Login = ({ history }) => {
               Welcome back!
             </Typography>
             <GoogleButton style={{ marginTop: "15px" }}
-              onClick={() => { console.log('Google button clicked') }}
+              onClick={() => { SignInWithGoogle(); }}
             />
 
             <Typography component="h6" style={{ marginTop: "15px" }}>
@@ -118,7 +137,7 @@ const Login = ({ history }) => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -129,7 +148,7 @@ const Login = ({ history }) => {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"

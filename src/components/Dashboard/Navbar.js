@@ -1,21 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Dropdown,
     Card,
     Button
 } from 'react-bootstrap'
 import Avatar from '../../assets/img/Avatar/programmer.png'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { getAuth, signOut } from '@firebase/auth';
 
-function Navbar() {
+const Navbar = ({ history }) => {
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                localStorage.removeItem('token')
+                history.push('/')
+            })
+            .catch((e) => alert(e.message))
+    }
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            history.push('/')
+        }
+    }, [])
+
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     const [profile, setprofile] = useState({
-        name: "USER",
+        name: user ? user.displayName : "",
         imageUrl: "",
     })
 
-    const handleSignOut = () => {
-        console.log("Sign Out")
-    }
     return (
         <header className="p-3 bg-dark text-white">
             <div className="container-fluid">
@@ -45,7 +63,7 @@ function Navbar() {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="text-center">
-                                        <Button variant="outline-danger" size="lg" onClick={handleSignOut}>Sign Out</Button>
+                                        <Button variant="outline-danger" size="lg" onClick={logout}>Sign Out</Button>
                                     </Card.Footer>
                                 </Card>
                             </Dropdown.Item>
@@ -56,4 +74,4 @@ function Navbar() {
         </header>
     )
 }
-export default Navbar
+export default withRouter(Navbar)
