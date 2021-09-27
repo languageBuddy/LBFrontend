@@ -4,9 +4,12 @@ import Login from './components/Auth/SignInSide'
 import Register from './components/Auth/SignUp'
 import Dashboard from './components/Dashboard/index'
 import Learn from './components/Dashboard/Learn'
+import About from './components/About/index';
+import Exam from './components/Exam/index'
+import Answer from './components/Exam/Answer'
 import NotFound from './components/NotFound'
-// import Exam from './components/Exam/index'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 
@@ -32,17 +35,17 @@ function App() {
   }, [])
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/dashboard/learn/:id" exact component={Learn} />
-        {/* <Route path="/exam" exact component={Exam} /> */}
-        <Route path="*" component={NotFound} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route path="/" exact component={Main} />
+      <Route path="/login" exact component={Login} />
+      <Route path="/register" exact component={Register} />
+      <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/dashboard/learn/:id" exact component={Learn} />
+      <Route path="/dashboard/about" exact component={About} />
+      <Route path="/dashboard/exam" exact component={Exam} />
+      <Route path="/dashboard/exam/answer" exact component={Answer} />
+      <Route path="*" component={NotFound} />
+    </Switch>
   );
 }
 

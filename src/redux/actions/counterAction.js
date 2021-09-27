@@ -1,19 +1,11 @@
 
-
-
-const increment = () => {
+const increment = ({ QueryType, count }) => {
     return {
-        type: 'INCREMENT'
+        type: QueryType,
+        payload: count
     }
 }
 
-const decrement = () => {
-    return {
-        type: 'DECREMENT'
-    }
-}
-
-export default {
-    increment,
-    decrement
+export {
+    increment
 }
