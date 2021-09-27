@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from '../../assets/img/courses/img_1.jpg'
 import './course.scss'
 
-function Hero(props) {
+function Hero() {
   const HandleMusic = () => {
     let aud = document.getElementById("song")
     if (aud.paused == true) {
