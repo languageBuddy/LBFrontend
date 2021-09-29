@@ -7,12 +7,12 @@ function Head() {
             <meta charSet="utf-8" />
             <meta content="width=device-width, initial-scale=1.0" name="charSet" />
 
-            <title>Medilab Bootstrap Template - Index</title>
+            <title> LANGUAGE BUDDY</title>
             <meta content="" name="description" />
             <meta content="" name="keywords" />
 
             {/* <!-- Favicons --> */}
-            <link href="../../assets/img/favicon.png" rel="icon" />
+            {/* <link href="logo.ico" rel="icon" /> */}
             <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
             {/* <!-- Google Fonts --> */}

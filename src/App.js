@@ -19,7 +19,7 @@ const firebaseConfig = {
   projectId: "languagebuddyauth",
   storageBucket: "languagebuddyauth.appspot.com",
   messagingSenderId: "604099630296",
-  appId: "1:604099630296:web:f62069384c9048a6feb3ad"
+  appId: "1:604099630296:web:f62069384c9048a6feb3ad",
 };
 
 initializeApp(firebaseConfig);
