@@ -24,7 +24,7 @@ function Hero() {
         </div>
         <audio id="song">
           {/* Add sound source here */}
-          <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3" />
+          <source src="https://res.cloudinary.com/sygamar/video/upload/v1632926484/Module%201/1._I_cxiv7y.mp3" type="audio/mp3" />
         </audio>
         <div className="text-container w-100">
           <div className="text-left mb-3">
