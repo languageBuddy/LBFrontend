@@ -11,14 +11,25 @@ function Contact() {
         phone: "",
         message: ""
     })
+    const [notification, setnotification] = useState({
+        message: "",
+        color: ""
+    })
+
     const sendmessage = (e) => {
         e.preventDefault();
         axios.post('http://localhost:5000/send', state)
             .then(response => {
-                console.log(response.msg)
+                setnotification({
+                    message: response.data.msg,
+                    color: 'success'
+                });
             })
             .catch(err => {
-                console.log(err)
+                setnotification({
+                    message: err.message,
+                    color: 'danger'
+                })
             })
 
         setstate({ name: "", email: "", subject: "", phone: "", message: "" })
@@ -40,7 +51,13 @@ function Contact() {
                     </div>
                     <div class="contact">
                         <h3 style={{ marginBottom: " 30px" }}><strong>We would love to hear from you!</strong></h3>
-                        {/* {{msg}} */}
+                        {
+                            notification.message && notification.message.length > 0 &&
+                            < div class={`alert alert-${notification.color}`} role="alert">
+                                {notification.message}
+                            </div>
+                        }
+
                         <form >
                             <p>
                                 <label>Name</label>
@@ -69,7 +86,7 @@ function Contact() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
         // End Contact Section 
 
     )
