@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import {
-    Button
-} from 'reactstrap'
+import axios from 'axios'
 import './contact.css';
+
 function Contact() {
 
     const [state, setstate] = useState({
@@ -14,7 +13,13 @@ function Contact() {
     })
     const sendmessage = (e) => {
         e.preventDefault();
-        console.log(state)
+        axios.post('http://localhost:5000/send', state)
+            .then(response => {
+                console.log(response.msg)
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
         setstate({ name: "", email: "", subject: "", phone: "", message: "" })
     }
