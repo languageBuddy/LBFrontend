@@ -131,13 +131,13 @@ const Signup = ({ history }) => {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
+            <Avatar sx={{ bgcolor: 'secondary.main', width: 100, height: 100 }} >
+              <img src="/logo_30.png" className="img-fluid w-100" />
             </Avatar>
             <Typography component="h1" variant="h5">
               Welcome!
             </Typography>
-            <GoogleButton style={{ marginTop: "15px" }}
+            <GoogleButton label='Sign up with Google' style={{ marginTop: "15px" }}
               onClick={() => { SignInWithGoogle() }}
             />
 

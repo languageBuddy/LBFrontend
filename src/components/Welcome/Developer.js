@@ -37,7 +37,7 @@ function Developer() {
                                     <h4>Developer </h4>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                        Hello there, thanks for logging into language Buddy. My Epic games ID is: Sygamar. Hit me up if you wanna play some Rocket League.
                                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>
