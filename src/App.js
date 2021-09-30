@@ -12,14 +12,17 @@ import NotFound from './components/NotFound'
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
+require('dotenv').config();
+
+console.log(`${process.env.REACT_APP_AID}`);
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAZcACNs1YcIazxKNEi-0PC29mjvUwRdbM",
-  authDomain: "languagebuddyauth.firebaseapp.com",
-  projectId: "languagebuddyauth",
-  storageBucket: "languagebuddyauth.appspot.com",
-  messagingSenderId: "604099630296",
-  appId: "1:604099630296:web:f62069384c9048a6feb3ad",
+  apiKey: `${process.env.REACT_APP_APIKEY}`,
+  authDomain: `${process.env.REACT_APP_AUTHDOMAIN}`,
+  projectId: `${process.env.REACT_APP_ID}`,
+  storageBucket: `${process.env.REACT_APP_SB}`,
+  messagingSenderId: `${process.env.REACT_APP_MID}`,
+  appId: `${process.env.REACT_APP_AID}`,
 };
 
 initializeApp(firebaseConfig);

@@ -61,7 +61,7 @@ const Signup = ({ history }) => {
         // The signed-in user info.
         const user = result.user;
         updateProfile(auth.currentUser, { displayName: credential.name })
-          .then(() => history.push('/dashboard'))
+          .then(() => history.push('/login'))
           .catch((e) => alert(e.message))
         // ...
       }).catch((error) => {
