@@ -10,12 +10,9 @@ function Whyus() {
                         <div className="content">
                             <h3>Why Choose Language Buddy?</h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                            Unlike other resources available on the market Language Buddy is absolutely free of cost, made with inputs of locals with the common phrases and words used in day to day conversations and absolutely easy to use.
                             </p>
-                            <div className="text-center">
-                                <a href="#" className="more-btn">Learn More <i className="bx bx-chevron-right"></i></a>
-                            </div>
+                          
                         </div>
                     </div>
                     <div className="col-lg-8 d-flex align-items-stretch">
@@ -24,22 +21,23 @@ function Whyus() {
                                 <div className="col-xl-4 d-flex align-items-stretch">
                                     <div className="icon-box mt-4 mt-xl-0">
                                         <i className="bx bx-receipt"></i>
-                                        <h4>Corporis voluptates sit</h4>
-                                        <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                                        <h4>Universally accessible</h4>
+                                        <p>Anybody can log into Language Buddy for knowing phrases they might need in day to day conversations, with neatly divided modules guiding you to exactly where you want to be
+</p>
                                     </div>
                                 </div>
                                 <div className="col-xl-4 d-flex align-items-stretch">
                                     <div className="icon-box mt-4 mt-xl-0">
                                         <i className="bx bx-cube-alt"></i>
-                                        <h4>Ullamco laboris ladore pan</h4>
-                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                                        <h4>Useful Learning</h4>
+                                        <p>Have you ever come across phrases while learning a new language that you will probably never use? Well, Language Buddy consists of cherry-picked phrases and words that you will need in daily conversations</p>
                                     </div>
                                 </div>
                                 <div className="col-xl-4 d-flex align-items-stretch">
                                     <div className="icon-box mt-4 mt-xl-0">
                                         <i className="bx bx-images"></i>
-                                        <h4>Labore consequatur</h4>
-                                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                                        <h4>Test your knowledge</h4>
+                                        <p>Evaluate your knowledge with a series of well thought out exam modules</p>
                                     </div>
                                 </div>
                             </div>
