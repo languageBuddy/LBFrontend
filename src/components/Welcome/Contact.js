@@ -18,7 +18,16 @@ function Contact() {
 
     const sendmessage = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/send', state)
+        if(state.name.length == 0 || state.email.length ==0 || state.subject.length==0 || state.phone.length==0 || state.message.length==0){
+            setnotification({
+                message: "Fields cannot be empty",
+                color: 'danger'
+
+            });
+
+            return;
+        }
+        axios.post('/send', state)
             .then(response => {
                 setnotification({
                     message: response.data.msg,
@@ -61,7 +70,7 @@ function Contact() {
                         <form >
                             <p>
                                 <label>Name</label>
-                                <input type="text" value={state.name} onChange={e => setstate({ ...state, name: e.target.value })} required />
+                                <input type="text" value={state.name} onChange={e => setstate({ ...state, name: e.target.value })} required  />
                             </p>
                             <p>
                                 <label>Phone Number</label>

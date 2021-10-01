@@ -21,7 +21,7 @@ function Developer() {
                                     <h4> Developer </h4>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                        Hello wanderer, I am  like a ninja monitoring the social media in stealth mode waiting for opportune moment to- nah I am just an introvert.
                                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -53,7 +53,7 @@ function Developer() {
                                     <h4>Developer</h4>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                      Hey there, welcome to Language Buddy. If I am not coding I am most likely playing a tabla.
                                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>
