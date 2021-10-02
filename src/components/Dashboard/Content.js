@@ -5,13 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function Content() {
     const audioFiles = useSelector(state => state.audio)
-    // console.log(audioFiles)
+    console.log("audio files")
+    console.log(audioFiles)
     return (
         <div className="dash-container">
             <div className="dash-content">
                 {
                     audioFiles && audioFiles.map(module => {
-                        return <Module key={module.moduleId} {...module} />
+                        return <Module key={module.module_id} {...module} />
                     })
                 }
             </div>
