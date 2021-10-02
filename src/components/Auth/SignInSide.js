@@ -44,7 +44,9 @@ const Login = ({ history }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         localStorage.setItem('token', userCredential._tokenResponse.idToken);
-        history.push('/dashboard')
+        if(auth.currentUser.emailVerified){history.push('/dashboard')}
+        else {alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
+        auth.signOut();}
       })
       .catch(e => alert(e.message))
       .finally(() => setLoading(false))
