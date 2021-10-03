@@ -5,7 +5,7 @@ import Media from './Media';
 function Player(props) {
   const [isOpen, setIsOpen] = useState(props.submoduleId == 1 ? true : false);
   const toggle = () => setIsOpen(!isOpen);
-
+  console.log(props)
   return (
     <div>
 
