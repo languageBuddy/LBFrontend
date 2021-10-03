@@ -17,39 +17,34 @@ import {
 import GoogleButton from 'react-google-button'
 import { Link as Rlink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import LoginImg from '../../assets/img/Auth/loginImage.svg'
 
-const Login = ({ history }) => {
+const ForgotPassword = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [sent, isSent] = useState(false);
 
-  const SignInWithGoogle = () => {
-    setLoading(true)
-    const provider = new GoogleAuthProvider();
+  const actionCodeSettings = {
+    url: 'http://localhost:3000/login',
+    // This must be true.
+    handleCodeInApp: true,
+  };
+
+  const reset = () => {
+    isSent(false);
     const auth = getAuth();
-    signInWithPopup(auth, provider)
-    .then((userCredential) => {
-      localStorage.setItem('token', userCredential._tokenResponse.idToken);
-      history.push('/dashboard')
+    sendPasswordResetEmail(auth, email, actionCodeSettings)
+    .then(() => {
+        isSent(true);
+        alert(`Password reset instructions sent to your email: ${email}. Check your inbox to reset your account password.`)
     })
-    .catch(e => alert(e.message))
-    .finally(() => setLoading(false))
-
-  }
-  const onLogin = () => {
-    setLoading(true)
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        localStorage.setItem('token', userCredential._tokenResponse.idToken);
-        if(auth.currentUser.emailVerified){history.push('/dashboard')}
-        else {alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
-        auth.signOut();}
-      })
-      .catch(e => alert(e.message))
-      .finally(() => setLoading(false))
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(`Error Code: ${errorCode}\nMessage: ${errorMessage}`);
+    })
+    .finally(()=>isSent(true));
   }
 
   function Copyright(props) {
@@ -72,8 +67,7 @@ const Login = ({ history }) => {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get('email')
     });
   };
 
@@ -109,14 +103,11 @@ const Login = ({ history }) => {
               <img src="/logo_30.png" className="img-fluid w-100" />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Welcome back!
+              Password Reset
             </Typography>
-            <GoogleButton style={{ marginTop: "15px" }}
-              onClick={() => { SignInWithGoogle(); }}
-            />
 
             <Typography component="h6" style={{ marginTop: "15px" }}>
-              Or
+              Enter Your Registered Email Id
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -130,40 +121,25 @@ const Login = ({ history }) => {
                 autoFocus
                 onChange={e => setEmail(e.target.value)}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                placeholder="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={e => setPassword(e.target.value)}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={onLogin}
+                onClick={reset}
               >
-                {loading ? 'Logging you in ...' : 'Login'}
+                {sent ? 'Sent Password Reset Email' : 'Reset'}
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/forgot-password" variant="body2">
-                    Forgot password?
+                  <Link href="/login" variant="body2">
+                    Sign In
                   </Link>
                 </Grid>
                 <Grid item>
                   <Rlink to="/register">
                     <Link variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      {"Sign Up"}
                     </Link>
                   </Rlink>
                 </Grid>
@@ -177,4 +153,6 @@ const Login = ({ history }) => {
   );
 }
 
-export default Login;
+export default ForgotPassword;
+
+

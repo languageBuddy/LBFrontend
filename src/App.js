@@ -9,6 +9,8 @@ import Exam from './components/Exam/index'
 import Answer from './components/Exam/Answer'
 import NotFound from './components/NotFound'
 import Verify from './components/Auth/verify'
+import forgotPassword from './components/Auth/ForgotPassword'
+import pleaseLogin from './components/Auth/pleaseLogin'
 
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
@@ -49,6 +51,8 @@ function App() {
       <Route path="/dashboard/exam" exact component={Exam} />
       <Route path="/dashboard/exam/answer" exact component={Answer} />
       <Route path="/verify" exact component={Verify}/>
+      <Route path="/forgot-password" exact component={forgotPassword}/>
+      <Route path="/please-login" exact component={pleaseLogin}/>
       <Route path="*" component={NotFound} />
     </Switch>
   );
