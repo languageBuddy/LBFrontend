@@ -22,7 +22,7 @@ const Navbar = ({ history }) => {
         const token = localStorage.getItem('token');
 
         if (!token) {
-            history.push('/')
+            history.push('/please-login')
         }
     }, [])
 
@@ -35,6 +35,7 @@ const Navbar = ({ history }) => {
     })
 
     return (
+        
         <header className="p-3 bg-dark text-white">
             <div className="container-fluid">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

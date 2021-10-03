@@ -1,0 +1,14 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('https://res.cloudinary.com/dsrpn6k2o/image/upload/v1633253352/Photo/mail-g5f31c89eb_1280_cug3a4.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+.xbg-image {
+  background-image: url('https://res.cloudinary.com/dsrpn6k2o/image/upload/v1633267325/Photo/signpost-ge79a60e36_1280_ix9f0n.jpg');
+  background-size: cover;
+  background-position: center center;
+}
