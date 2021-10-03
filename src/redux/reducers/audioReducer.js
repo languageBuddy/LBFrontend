@@ -1,7 +1,5 @@
 
-const initialState = [
-
-]
+const initialState = []
 
 
 function audioReducer(state = initialState, action) {

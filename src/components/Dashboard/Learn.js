@@ -7,8 +7,9 @@ import { useParams } from 'react-router';
 function Learn() {
     const { id } = useParams()
     const audio = useSelector(state => state.audio)
-    // console.log(audio)
-    const [state, setstate] = useState(audio[id - 1])
+
+    const [state, setstate] = useState(audio.audios[id - 1])
+    console.log("state")
     console.log(state)
     return (
         <div className="dash-container">
@@ -16,7 +17,7 @@ function Learn() {
             <br /> <br />
             {
                 state && state.audios && state.audios.map(aud => {
-                    return <Media key={aud.audio_id} {...aud} />
+                    return <Media key={aud.audio_id} {...aud} ImageUrl={state.module_img_url} />
                 })
             }
         </div>
