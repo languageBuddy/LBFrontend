@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './exam.scss'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import {
     Button
 } from 'react-bootstrap'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { increment } from '../../redux/actions/counterAction'
+import { getAuth } from '@firebase/auth';
 
 function Exam() {
+
     const exam = useSelector(state => state.exam)
     const counter = useSelector(state => state.counter)
     const [questions, setquestions] = useState([])
@@ -46,8 +48,14 @@ function Exam() {
     useEffect(() => {
         setquestions(exam.questions)
     }, [counter.showscore])
-    return (
-        <div className="exam-body">
+
+    const auth = getAuth();
+    var user = auth.currentUser;
+    if(!user){
+        return <Redirect to="/please-login" />;
+    }else{
+        return(
+            <div className="exam-body">
             <div className='exam-app'>
 
                 {counter.showscore ? (
@@ -81,7 +89,9 @@ function Exam() {
                 )}
             </div>
         </div>
-    );
+            );
+    }
+    
 }
 
 export default Exam

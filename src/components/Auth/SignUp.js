@@ -12,14 +12,14 @@ import {
   Grid,
   Typography,
   createTheme,
+
   ThemeProvider
 } from '@mui/material'
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import GoogleButton from 'react-google-button'
 import { Link as RLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
 
 import RegisterImg from '../../assets/img/Auth/registerImage.svg'
 
@@ -28,6 +28,13 @@ const Signup = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sent, isSent] = useState(false);
+
+  const actionCodeSettings = {
+    url: 'http://localhost:3000/login',
+    // This must be true.
+    handleCodeInApp: true,
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -44,8 +51,15 @@ const Signup = ({ history }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         updateProfile(auth.currentUser, { displayName: name })
-          .then(() => history.push('/login'))
-          .catch((e) => alert(e.message))
+          .then(() => {sendEmailVerification(auth.currentUser, actionCodeSettings)
+            .then(()=>{
+              window.localStorage.setItem('emailForSignIn', email);
+            })
+            .catch(e => alert(e.message))
+            .finally(() => isSent(true))
+          auth.signOut();})
+          .catch((e) => alert(e.message)) 
+        history.push('/verify');
       }).catch((e) => alert(e.message))
       .finally(() => setLoading(false))
   }
@@ -164,7 +178,6 @@ const Signup = ({ history }) => {
                 placeholder="Email Address"
                 name="email"
                 autoComplete="email"
-                autoFocus
                 onChange={e => setEmail(e.target.value)}
               />
               <TextField
