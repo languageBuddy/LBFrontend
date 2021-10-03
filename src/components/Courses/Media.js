@@ -3,8 +3,7 @@ import Image from '../../assets/img/courses/img_1.jpg'
 import './course.scss'
 
 function Hero(props) {
-
-  const { audio_id, audio_url, audio_text } = props
+  const { audio_id, audio_url, audio_text, ImageUrl } = props
   var current = new Audio(audio_url);
   const handleClick = () => {
     if (current.paused == true) {
@@ -21,7 +20,7 @@ function Hero(props) {
         style={{ borderRadius: "20px" }}>
         <div className="image-container">
           {/* Add image source here */}
-          <img src={Image} className="course-image" />
+          <img src={ImageUrl} className="course-image" />
           <button className="image-btn" onClick={handleClick}> <i class="bi bi-play-circle fs-2"></i> </button>
         </div>
         <div className="text-container w-100">
