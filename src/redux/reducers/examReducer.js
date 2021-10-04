@@ -1,5 +1,11 @@
 
 const initalState = []
+<<<<<<< HEAD
+=======
+    
+
+   
+>>>>>>> 23c6584742391f456bbeb320e5e3810fcab2c499
 
 
 function examReducer(state = initalState, action) {
