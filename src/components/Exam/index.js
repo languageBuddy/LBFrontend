@@ -7,7 +7,10 @@ import {
 
 import { useSelector, useDispatch } from 'react-redux'
 import { increment } from '../../redux/actions/counterAction'
+import { fetchQuestion } from '../../redux/actions/examAction'
 import { getAuth } from '@firebase/auth';
+import axios from 'axios'
+
 
 function Exam() {
 
@@ -46,52 +49,61 @@ function Exam() {
     }
 
     useEffect(() => {
-        setquestions(exam.questions)
+        axios.get('http://localhost:5000/exam/fetch')
+            .then(response => {
+                dispatch(fetchQuestion(response.data))
+                setquestions(response.data)
+            }).catch(error => {
+                console.log(error.message)
+            })
     }, [counter.showscore])
 
     const auth = getAuth();
     var user = auth.currentUser;
-    if(!user){
+    if (!user) {
         return <Redirect to="/please-login" />;
-    }else{
-        return(
+    } else {
+        return (
             <div className="exam-body">
-            <div className='exam-app'>
+                <div className='exam-app'>
 
-                {counter.showscore ? (
-                    <div className='score-section'>
-                        <h3 className="mb-3"> You scored {counter.score} out of {questions.length} </h3>
-                        <Link to="/dashboard" className="mb-3"> <Button variant="outline-danger" onClick={handleClick}>Go to Dashboard </Button> </Link>
-                        <Link to="/dashboard/exam/answer"> <Button variant="outline-success"> Correct Answer </Button> </Link>
-                    </div>
-                ) : (
-                    <div className="exam-card">
-                        <div className='question-section'>
-                            <div className='question-count'>
-                                <span>Question {counter.currentQuestion + 1}</span>/{questions.length}
+                    {counter.showscore ? (
+                        <div className='score-section'>
+                            <h3 className="mb-3"> You scored {counter.score} out of {questions.length} </h3>
+                            <Link to="/dashboard" className="mb-3"> <Button variant="outline-danger" onClick={handleClick}>Go to Dashboard </Button> </Link>
+                            <Link to="/dashboard/exam/answer"> <Button variant="outline-success"> Correct Answer </Button> </Link>
+                        </div>
+                    ) : (
+                        <div className="exam-card">
+                            <div className='question-section'>
+                                <div className='question-count'>
+                                    <span>Question {counter.currentQuestion + 1}</span>/{questions.length}
+                                </div>
+                                <div className='question-text'>
+                                    <audio controls>
+                                        {
+                                            questions.length > 0 && questions[counter.currentQuestion] &&
+                                            <source src={questions[counter.currentQuestion].questionAudioUrl} type="audio/mp3" />
+                                        }
+                                    </audio>
+                                </div>
                             </div>
-                            <div className='question-text'>
-                                <audio id="song" controls>
-                                    <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3" />
-                                </audio>
+                            <div className='answer-section'>
+                                {
+                                    questions.length > 0 && questions[counter.currentQuestion] && questions[counter.currentQuestion].answerOptions.map(option => {
+                                        return (
+                                            <button className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
-                        <div className='answer-section'>
-                            {
-                                questions.length > 0 && questions[counter.currentQuestion] && questions[counter.currentQuestion].answerOptions.map(option => {
-                                    return (
-                                        <button className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
-        </div>
-            );
+        );
     }
-    
+
 }
 
 export default Exam
