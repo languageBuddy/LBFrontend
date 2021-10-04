@@ -1,6 +1,3 @@
-*{
-    box-sizing: border-box;
-  }
   
   .cont{
     background:#92bde7;
@@ -10,7 +7,7 @@
     
   }
   
-  .container{
+  .contact-container{
     max-width:1170px;
     margin-left:auto;
     margin-right:auto;

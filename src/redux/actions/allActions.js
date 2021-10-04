@@ -1,9 +1,10 @@
 
 import audioAction from "./audioAction";
-
+import counterAction from "./counterAction"
 
 const allActions = {
-    audioAction
+    audioAction,
+    counterAction
 }
 
 export default allActions

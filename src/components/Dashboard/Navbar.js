@@ -22,7 +22,7 @@ const Navbar = ({ history }) => {
         const token = localStorage.getItem('token');
 
         if (!token) {
-            history.push('/')
+            history.push('/please-login')
         }
     }, [])
 
@@ -35,12 +35,13 @@ const Navbar = ({ history }) => {
     })
 
     return (
+        
         <header className="p-3 bg-dark text-white">
             <div className="container-fluid">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/dashboard" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <img src="/logo.png" className="img-fluid" style={{
-                            height: "50px"
+                        <img src="/log_bg.png" className="img-fluid" style={{
+                            height: "60px"
                         }} alt="" />
                     </a>
 

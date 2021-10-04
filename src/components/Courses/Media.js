@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import Image from '../../assets/img/courses/img_1.jpg'
 import './course.scss'
 
-function Hero() {
-  const HandleMusic = () => {
-    let aud = document.getElementById("song")
-    if (aud.paused == true) {
-      aud.play();
+function Hero(props) {
+  const { audio_id, audio_url, audio_text, ImageUrl } = props
+  var current = new Audio(audio_url);
+  const handleClick = () => {
+    if (current.paused == true) {
+      current.play();
     }
     else {
-      aud.pause();
+      current.pause();
     }
   }
   return (
@@ -19,28 +20,24 @@ function Hero() {
         style={{ borderRadius: "20px" }}>
         <div className="image-container">
           {/* Add image source here */}
-          <img src={Image} className="course-image" />
-          <button className="image-btn" onClick={HandleMusic}> <i class="bi bi-play-circle fs-2"></i> </button>
+          <img src={ImageUrl} className="course-image" />
+          <button className="image-btn" onClick={handleClick}> <i class="bi bi-play-circle fs-2"></i> </button>
         </div>
-        <audio id="song">
-          {/* Add sound source here */}
-          <source src="https://res.cloudinary.com/sygamar/video/upload/v1632926484/Module%201/1._I_cxiv7y.mp3" type="audio/mp3" />
-        </audio>
         <div className="text-container w-100">
           <div className="text-left mb-3">
             <label for="itemValue mb-1">Bengali </label>
-            <h3>Tōmāra sāthē dēkhā karē bhālō </h3>   {/* Bengali translation in english */}
-            <h4>তোমার সাথে দেখা করে ভালো লাগলো </h4> {/* bengali translation in bengali  */}
+            <h3>{audio_text.bangla_text.benglish} </h3>   {/* Bengali translation in english */}
+            <h4>{audio_text.bangla_text.bangla} </h4> {/* bengali translation in bengali  */}
           </div>
           <div className="text-left mb-3">
             <label for="itemValue mb-1 pe-2" >English (IN)</label>
-            <h3>nice to meet you</h3>  {/* english translation */}
+            <h3>{audio_text.english}</h3>  {/* english translation */}
           </div>
 
           <div className="text-lef">
             <label for="itemValue" >Hindi</label>
-            <h3>aap se milakar achchha laga </h3>  {/* Hindi translation in english */}
-            <h4> आप से मिलकर अच्छा लगा </h4>      {/* Hindi translation in Hindi  */}
+            <h3>{audio_text.hindi_text.hinglish} </h3>  {/* Hindi translation in english */}
+            <h4> {audio_text.hindi_text.hindi} </h4>      {/* Hindi translation in Hindi  */}
           </div>
         </div>
       </div>

@@ -1,24 +1,6 @@
 
-const initialState = [
-    {
-        moduleId: 1, submodule: [
-            { submoduleId: 1 },
-            { submoduleId: 2 }
-        ]
-    },
-    {
-        moduleId: 2, submodule: [
-            { submoduleId: 1 },
-            { submoduleId: 2 }
-        ]
-    },
-    {
-        moduleId: 3, submodule: [
-            { submoduleId: 1 },
-            { submoduleId: 2 }
-        ]
-    }
-]
+const initialState = []
+
 
 function audioReducer(state = initialState, action) {
     switch (action.type) {
