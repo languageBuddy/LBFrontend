@@ -9,6 +9,8 @@ import Exam from './components/Exam/index'
 import Answer from './components/Exam/Answer'
 import NotFound from './components/NotFound'
 
+import Button from '@material-ui/core/Button';
+
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
@@ -37,8 +39,13 @@ function App() {
     })
   }, [])
 
+  
   return (
+    
     <Switch>
+      
+          
+      
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
@@ -49,6 +56,7 @@ function App() {
       <Route path="/dashboard/exam/answer" exact component={Answer} />
       <Route path="*" component={NotFound} />
     </Switch>
+    
   );
 }
 
