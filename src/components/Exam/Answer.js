@@ -3,35 +3,36 @@ import './exam.scss'
 import { useSelector } from 'react-redux'
 import { getAuth } from '@firebase/auth';
 import { Redirect } from 'react-router-dom'
-import {pleaseLogin} from '../Auth/pleaseLogin'
+import { pleaseLogin } from '../Auth/pleaseLogin'
 
 function Answer() {
 
-    const auth= getAuth();
-    var user= auth.currentUser;
+    const auth = getAuth();
+    var user = auth.currentUser;
 
 
     //takes all question from react-redux
     const exam = useSelector(state => state.exam)
     const [questions, setquestions] = useState([])
     useEffect(() => {
-        setquestions(exam.questions)
+        setquestions(exam.mcqs)
     }, [questions])
 
-    if(!user){
-           return <Redirect to="/please-login" />;
+
+    if (!user) {
+        return <Redirect to="/please-login" />;
     }
-    else{
+    else {
         return (
             <div className="contaier m-3">
-                {   
-                    questions.map(question => {
-                        
+                {
+                    questions && questions.map(question => {
+
                         return (
                             <div class="card mb-3" style={{ marginLeft: "30px", marginRight: "30px" }} key={question.questionText}>
                                 <div class="card-header">
                                     <audio id="song" controls>
-                                        <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3" />
+                                        <source src={question.questionAudioUrl} type="audio/mp3" />
                                     </audio>
                                 </div>
                                 <div class="card-body" style={{ backgroundColor: "green" }}>
@@ -43,7 +44,7 @@ function Answer() {
                 }
             </div>
         )
-            }
+    }
 }
 
 export default Answer

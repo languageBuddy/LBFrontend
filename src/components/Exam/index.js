@@ -9,13 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { increment } from '../../redux/actions/counterAction'
 import { fetchQuestion } from '../../redux/actions/examAction'
 import { getAuth } from '@firebase/auth';
-<<<<<<< HEAD
-import axios from 'axios'
-=======
 import axios from 'axios';
-import { fetchQuestion } from '../../redux/actions/examAction'
->>>>>>> 23c6584742391f456bbeb320e5e3810fcab2c499
-
 
 function Exam() {
 
@@ -24,7 +18,7 @@ function Exam() {
     const counter = useSelector(state => state.counter)
     const [questions, setquestions] = useState([])
     const dispatch = useDispatch()
-   
+
     const handleButtonClick = async (isCorrect) => {
         if (isCorrect === true) {
             await dispatch(increment({
@@ -60,16 +54,24 @@ function Exam() {
                 dispatch(fetchQuestion(response.data))
                 setquestions(response.data)
             }).catch(error => {
-<<<<<<< HEAD
-                console.log(error.message)
-=======
                 console.log(error)
->>>>>>> 23c6584742391f456bbeb320e5e3810fcab2c499
             })
     }, [counter.showscore])
 
     const auth = getAuth();
     var user = auth.currentUser;
+    if (questions.length > 0)
+        var aud = new Audio(questions[counter.currentQuestion].questionAudioUrl)
+
+    const playOrPause = () => {
+        if (aud.paused == true) {
+            aud.play()
+        }
+        else {
+            aud.pause()
+        }
+    }
+
     if (!user) {
         return <Redirect to="/please-login" />;
     } else {
@@ -88,28 +90,10 @@ function Exam() {
                             <div className='question-section'>
                                 <div className='question-count'>
                                     <span>Question {counter.currentQuestion + 1}</span>/{questions.length}
-<<<<<<< HEAD
                                 </div>
                                 <div className='question-text'>
-                                    <audio controls>
-                                        {
-                                            questions.length > 0 && questions[counter.currentQuestion] &&
-                                            <source src={questions[counter.currentQuestion].questionAudioUrl} type="audio/mp3" />
-=======
-
-                                </div>
-                                <div className='question-text'>
-                                
-                                    <h4>
-                                        {questions && questions[counter.currentQuestion ] &&
-                                        questions[counter.currentQuestion].questionText}
-                                        </h4>
-                                    <audio  controls>{
-                                            questions && questions[counter.currentQuestion ] &&
-                                            <source src={questions[counter.currentQuestion ].questionAudioUrl} type="audio/mp3" />
->>>>>>> 23c6584742391f456bbeb320e5e3810fcab2c499
-                                        }
-                                    </audio>
+                                    <h4 className="heading">{questions && questions[counter.currentQuestion] && questions[counter.currentQuestion].questionText} </h4>
+                                    <button onClick={playOrPause} className="btn btn-primary"> <i class="bi bi-play-circle"></i> Play/Pause</button>
                                 </div>
                             </div>
                             <div className='answer-section'>
