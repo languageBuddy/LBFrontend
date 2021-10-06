@@ -12,7 +12,8 @@ import {
   Grid,
   Typography,
   createTheme,
-
+  Alert,
+  AlertTitle,
   ThemeProvider
 } from '@mui/material'
 
@@ -29,6 +30,8 @@ const Signup = ({ history }) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, isSent] = useState(false);
+  const [message, setmessage] = useState("")
+
 
   const actionCodeSettings = {
     url: 'http://localhost:3000/login',
@@ -51,16 +54,18 @@ const Signup = ({ history }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         updateProfile(auth.currentUser, { displayName: name })
-          .then(() => {sendEmailVerification(auth.currentUser, actionCodeSettings)
-            .then(()=>{
-              window.localStorage.setItem('emailForSignIn', email);
-            })
-            .catch(e => alert(e.message))
-            .finally(() => isSent(true))
-          auth.signOut();})
-          .catch((e) => alert(e.message)) 
+          .then(() => {
+            sendEmailVerification(auth.currentUser, actionCodeSettings)
+              .then(() => {
+                window.localStorage.setItem('emailForSignIn', email);
+              })
+              .catch(e => setmessage(e.message))
+              .finally(() => isSent(true))
+            auth.signOut();
+          })
+          .catch((e) => setmessage(e.message))
         history.push('/verify');
-      }).catch((e) => alert(e.message))
+      }).catch((e) => setmessage(e.message))
       .finally(() => setLoading(false))
   }
 
@@ -195,6 +200,13 @@ const Signup = ({ history }) => {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+              {
+                message.length > 0 &&
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  <strong> {message}</strong>
+                </Alert>
+              }
               <Button
                 type="submit"
                 fullWidth

@@ -12,7 +12,9 @@ import {
   Grid,
   Typography,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Alert,
+  AlertTitle,
 } from '@mui/material'
 import GoogleButton from 'react-google-button'
 import { Link as Rlink } from 'react-router-dom';
@@ -24,18 +26,19 @@ const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setmessage] = useState("")
 
   const SignInWithGoogle = () => {
     setLoading(true)
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
-    .then((userCredential) => {
-      localStorage.setItem('token', userCredential._tokenResponse.idToken);
-      history.push('/dashboard')
-    })
-    .catch(e => alert(e.message))
-    .finally(() => setLoading(false))
+      .then((userCredential) => {
+        localStorage.setItem('token', userCredential._tokenResponse.idToken);
+        history.push('/dashboard')
+      })
+      .catch(e => alert(e.message))
+      .finally(() => setLoading(false))
 
   }
   const onLogin = () => {
@@ -44,11 +47,13 @@ const Login = ({ history }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         localStorage.setItem('token', userCredential._tokenResponse.idToken);
-        if(auth.currentUser.emailVerified){history.push('/dashboard')}
-        else {alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
-        auth.signOut();}
+        if (auth.currentUser.emailVerified) { history.push('/dashboard') }
+        else {
+          alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
+          auth.signOut();
+        }
       })
-      .catch(e => alert(e.message))
+      .catch(e => setmessage(e.message))
       .finally(() => setLoading(false))
   }
 
@@ -145,6 +150,13 @@ const Login = ({ history }) => {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+              {
+                message.length > 0 &&
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  <strong> {message}</strong>
+                </Alert>
+              }
               <Button
                 type="submit"
                 fullWidth
