@@ -16,12 +16,17 @@ import {
   ThemeProvider
 } from '@mui/material'
 
+
+
 import GoogleButton from 'react-google-button'
 import { Link as RLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
 
 import RegisterImg from '../../assets/img/Auth/registerImage.svg'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+
 
 const Signup = ({ history }) => {
   const [name, setName] = useState("");
@@ -95,12 +100,7 @@ const Signup = ({ history }) => {
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://github.com/languageBuddy/LBFrontend.git" target="_blank">
-          LanguageBuddy
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
+      <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary"/> by Language Buddy Team</strong>
       </Typography>
     );
   }

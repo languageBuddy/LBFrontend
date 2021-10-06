@@ -12,7 +12,7 @@ import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
 
-import Button from '@material-ui/core/Button';
+import {isMobile} from 'react-device-detect';
 
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
@@ -34,7 +34,13 @@ initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
+  const[show,setShow] = useState(true);
 
+  const handleClick =()=>{
+    
+    setShow(false);
+
+  }
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, user => {
@@ -42,7 +48,17 @@ function App() {
     })
   }, [])
 
-  
+if(isMobile && show){
+
+  return(
+    <div>
+      <h2>We recommend you to use desktop for better experience</h2>
+      <button style={{cursor:'pointer'}} onClick={handleClick}>Continue</button>
+    </div>
+  )
+
+}
+
   return (
     
     <Switch>

@@ -46,7 +46,7 @@ function Contact() {
 
     return (
         // <!-- ======= Contact Section ======= -->
-        <div className="cont">
+        <div id="cont" className="cont">
             <div className="container contact-container">
                 {/* <h1 className="brand"><span>Acme</span> Web Design</h1> */}
                 <div className="wrapper animated bounceInLeft">
