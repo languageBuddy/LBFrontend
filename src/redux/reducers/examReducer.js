@@ -1,8 +1,8 @@
 
 const initalState = []
-    
 
-   
+
+
 
 
 function examReducer(state = initalState, action) {
