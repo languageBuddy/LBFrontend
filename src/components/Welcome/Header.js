@@ -20,7 +20,7 @@ function Header() {
             <header id="header" className="fixed-top">
                 <div className="container d-flex align-items-center">
 
-                    <h1 className="logo me-2"><a href="/">LANGUAGE BUDDY</a></h1>
+                    <h1 className="logo me-2">LANGUAGE BUDDY</h1>
                     {/* <!-- Uncomment below if you prefer to use an image logo --> */}
                     <a href="/" className="logo me-auto"><img src="#" alt="" className="img-fluid" /></a>
 
@@ -29,7 +29,7 @@ function Header() {
                             <li><a className="nav-link scrollto active" href="#hero">Home</a></li>
                             <li><a className="nav-link scrollto" href="#about">About</a></li>
                  
-                            <li><a className="nav-link scrollto" href="#contact">Contact</a></li>
+                            <li><a className="nav-link scrollto" href="#cont">Contact</a></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
                     </nav>

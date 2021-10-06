@@ -59,7 +59,15 @@ function Exam() {
             })
     }, [counter.showscore])
 
+    if(questions && questions[counter.currentQuestion - 1] )
+    var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
+
+
+   
+
     const auth = getAuth();
+
+
     var user = auth.currentUser;
     if (!user) {
         return <Redirect to="/please-login" />;
@@ -87,6 +95,8 @@ function Exam() {
                                         {questions && questions[counter.currentQuestion ] &&
                                         questions[counter.currentQuestion].questionText}
                                         </h4>
+                                  
+
                                     <audio  controls>{
                                             questions && questions[counter.currentQuestion ] &&
                                             <source src={questions[counter.currentQuestion ].questionAudioUrl} type="audio/mp3" />

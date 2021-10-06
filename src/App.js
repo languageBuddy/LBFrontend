@@ -12,6 +12,8 @@ import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
 
+import {isMobile} from 'react-device-detect';
+
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
@@ -32,13 +34,30 @@ initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
+  const[show,setShow] = useState(true);
 
+  const handleClick =()=>{
+    
+    setShow(false);
+
+  }
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, user => {
       setUser(user)
     })
   }, [])
+
+if(isMobile && show){
+
+  return(
+    <div>
+      <h2>We recommend you to use desktop for better experience</h2>
+      <button style={{cursor:'pointer'}} onClick={handleClick}>Continue</button>
+    </div>
+  )
+
+}
 
   return (
     <Switch>
