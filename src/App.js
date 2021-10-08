@@ -19,6 +19,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 require('dotenv').config();
 
+
 console.log(`${process.env.REACT_APP_AID}`);
 
 const firebaseConfig = {
@@ -50,11 +51,12 @@ function App() {
 
 if(isMobile && show){
 
-  return(
-    <div>
-      <h2>We recommend you to use desktop for better experience</h2>
-      <button style={{cursor:'pointer'}} onClick={handleClick}>Continue</button>
-    </div>
+  return( 
+   <div>
+     <h1>Hello</h1>
+     <button onClick={handleClick}>Continue</button>
+   </div>
+ 
   )
 
 }

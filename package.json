@@ -27,11 +27,7 @@
     "npm": "^7.24.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.3",
-<<<<<<< HEAD
-    "react-device-detect": "^2.0.0",
-=======
     "react-device-detect": "^2.0.1",
->>>>>>> 0f29a61d9fc38f0e07d0eb12252ff700997e8882
     "react-dom": "^17.0.2",
     "react-google-button": "^0.7.2",
     "react-helmet": "^6.1.0",
