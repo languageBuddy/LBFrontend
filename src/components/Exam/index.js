@@ -54,15 +54,15 @@ function Exam() {
                 dispatch(fetchQuestion(response.data))
                 setquestions(response.data)
             }).catch(error => {
-                console.log(error)
+                console.error(error)
             })
     }, [counter.showscore])
 
-    if(questions && questions[counter.currentQuestion - 1] )
-    var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
+    if (questions && questions[counter.currentQuestion - 1])
+        var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
 
 
-   
+
 
     const auth = getAuth();
 
@@ -108,7 +108,7 @@ function Exam() {
                                 {
                                     questions.length > 0 && questions[counter.currentQuestion] && questions[counter.currentQuestion].answerOptions.map(option => {
                                         return (
-                                            <button className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
+                                            <button key={option._id} className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
                                         )
                                     })
                                 }

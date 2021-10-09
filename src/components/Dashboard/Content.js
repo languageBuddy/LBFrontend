@@ -7,7 +7,7 @@ import axios from 'axios'
 import { getAuth } from '@firebase/auth';
 function Content() {
     const audioFiles = useSelector(state => state.audio)
-    console.log(audioFiles)
+    // console.log(audioFiles)
     const dispatch = useDispatch()
 
 
@@ -19,14 +19,12 @@ function Content() {
             .then(response => {
                 dispatch(fetchAudio(response.data))
             }).catch(error => {
-                console.log(error)
+                console.error(error)
             })
         if (user && user.uid) {
             axios.post('http://localhost:5000/progress/fetch', {
                 uuid: user.uid
             }).then(response => {
-                console.log(response)
-                console.log(response.data)
                 if (response.data !== "") {
                     dispatch({
                         type: 'FETCH_DATA',
@@ -44,7 +42,7 @@ function Content() {
                     }
                 }
             }).catch(error => {
-                console.log(error)
+                console.error(error)
             })
         }
     }, [])

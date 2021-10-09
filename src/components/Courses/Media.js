@@ -15,7 +15,7 @@ function Hero(props) {
   const auth = getAuth();
   const user = auth.currentUser;
   const handleClick = async () => {
-    if (progress.progressData[module_id].played[audio_id] !== true) {
+    if (user && user.email && progress.progressData[module_id].played[audio_id] !== true) {
       await dispatch({
         type: 'INCREMENT_PROGRESS',
         payload: {
@@ -54,17 +54,17 @@ function Hero(props) {
         </div>
         <div className="text-container w-100">
           <div className="text-left mb-3">
-            <label for="itemValue mb-1">Bengali </label>
+            <label htmlFor="itemValue mb-1">Bengali </label>
             <h3>{audio_text.bangla_text.benglish} </h3>   {/* Bengali translation in english */}
             <h4>{audio_text.bangla_text.bangla} </h4> {/* bengali translation in bengali  */}
           </div>
           <div className="text-left mb-3">
-            <label for="itemValue mb-1 pe-2" >English (IN)</label>
+            <label htmlFor="itemValue mb-1 pe-2" >English (IN)</label>
             <h3>{audio_text.english}</h3>  {/* english translation */}
           </div>
 
           <div className="text-lef">
-            <label for="itemValue" >Hindi</label>
+            <label htmlFor="itemValue" >Hindi</label>
             <h3>{audio_text.hindi_text.hinglish} </h3>  {/* Hindi translation in english */}
             <h4> {audio_text.hindi_text.hindi} </h4>      {/* Hindi translation in Hindi  */}
           </div>

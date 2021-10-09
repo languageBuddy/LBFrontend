@@ -7,14 +7,19 @@ import {
 import Avatar from '../../assets/img/Avatar/programmer.png'
 import { Link, withRouter } from 'react-router-dom'
 import { getAuth, signOut } from '@firebase/auth';
+import { useDispatch } from 'react-redux'
 
 const Navbar = ({ history }) => {
+    const dispatch = useDispatch()
     const logout = () => {
         signOut(auth)
             .then(() => {
+                dispatch({
+                    type: 'USER_LOGGED_OUT'
+                })
                 localStorage.removeItem('token')
                 history.push('/')
-                window.location.reload()
+                // window.location.reload()
             })
             .catch((e) => alert(e.message))
     }
@@ -29,7 +34,7 @@ const Navbar = ({ history }) => {
 
     const auth = getAuth();
     const user = auth.currentUser;
-    console.log(user)
+    // console.log(user)
     const [profile, setprofile] = useState({
         name: user ? user.displayName : "",
         imageUrl: user ? user.photoURL : "",
