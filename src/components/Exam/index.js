@@ -58,7 +58,15 @@ function Exam() {
             })
     }, [counter.showscore])
 
+    if(questions && questions[counter.currentQuestion - 1] )
+    var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
+
+
+   
+
     const auth = getAuth();
+
+
     var user = auth.currentUser;
     if (questions.length > 0)
         var aud = new Audio(questions[counter.currentQuestion].questionAudioUrl)
@@ -93,7 +101,7 @@ function Exam() {
                                 </div>
                                 <div className='question-text'>
                                     <h4 className="heading">{questions && questions[counter.currentQuestion] && questions[counter.currentQuestion].questionText} </h4>
-                                    <button onClick={playOrPause} className="btn btn-primary"> <i class="bi bi-play-circle"></i> Play/Pause</button>
+                                    <button onClick={playOrPause} className="btn btn-primary btn-block"> <i class="bi bi-play-circle"></i> Play/Pause</button>
                                 </div>
                             </div>
                             <div className='answer-section'>

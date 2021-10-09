@@ -12,10 +12,13 @@ import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
 
+import {isMobile} from 'react-device-detect';
+
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 require('dotenv').config();
+
 
 console.log(`${process.env.REACT_APP_AID}`);
 
@@ -32,7 +35,13 @@ initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
+  const[show,setShow] = useState(true);
 
+  const handleClick =()=>{
+    
+    setShow(false);
+
+  }
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, user => {
@@ -40,8 +49,24 @@ function App() {
     })
   }, [])
 
+if(isMobile && show){
+
+  return( 
+   <div>
+     <h1>Hello</h1>
+     <button onClick={handleClick}>Continue</button>
+   </div>
+ 
+  )
+
+}
+
   return (
+    
     <Switch>
+      
+          
+      
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
@@ -55,6 +80,7 @@ function App() {
       <Route path="/please-login" exact component={pleaseLogin}/>
       <Route path="*" component={NotFound} />
     </Switch>
+    
   );
 }
 
