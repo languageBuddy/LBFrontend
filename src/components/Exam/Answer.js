@@ -23,7 +23,7 @@ function Answer() {
         return <Redirect to="/please-login" />;
     }
     else {
-        return (
+        return ( <>
             <div className="contaier m-3">
                 {
                     questions && questions.map(question => {
@@ -35,14 +35,24 @@ function Answer() {
                                         <source src={question.questionAudioUrl} type="audio/mp3" />
                                     </audio>
                                 </div>
-                                <div class="card-body" style={{ backgroundColor: "green" }}>
-                                    <h5 class="card-title" style={{ color: "#FBFBFB" }}> Correct Answer : {question.answerOptions[question.correct - 1].answerText}</h5>
+                                <div class="card-body" style={{ backgroundColor: "#3AAFA9" }}>
+                                    <h5 class="card-title" style={{ color: "#DEF2F1" }}> Correct Answer : {question.answerOptions[question.correct - 1].answerText}</h5>
                                 </div>
                             </div>
+                            
                         )
                     })
                 }
             </div>
+
+<footer id="footer">
+
+<div class="footer-copyright text-center py-3">© 2021 <strong>LANGUAGEBUDDY</strong>.
+ALL RIGHTS RESERVED.
+  </div>
+          
+        </footer>
+        </>
         )
     }
 }

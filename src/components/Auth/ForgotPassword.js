@@ -19,6 +19,7 @@ import { Link as Rlink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import LoginImg from '../../assets/img/Auth/loginImage.svg'
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const ForgotPassword = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -50,12 +51,7 @@ const ForgotPassword = ({ history }) => {
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://github.com/languageBuddy/LBFrontend.git" target="_blank">
-          LanguageBuddy
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
+      <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary"/> by Language Buddy Team</strong>
       </Typography>
     );
   }
