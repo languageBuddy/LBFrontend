@@ -285,5 +285,9 @@
     transition: all 0.3s ease;
  }
 
-
- 
+.progressBar{
+   position: absolute;
+   top: 10px;
+   left: 1rem;
+   width: 88%;
+}

@@ -1,11 +1,30 @@
-import React, { useState } from 'react'
-import Image from '../../assets/img/courses/img_1.jpg'
+import React, { useEffect } from 'react'
 import './course.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+
+import { getAuth } from '@firebase/auth';
 
 function Hero(props) {
-  const { audio_id, audio_url, audio_text, ImageUrl } = props
+  const { audio_id, audio_url, audio_text, ImageUrl, module_id } = props
   var current = new Audio(audio_url);
-  const handleClick = () => {
+
+  const progress = useSelector(state => state.progress)
+  const dispatch = useDispatch()
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const handleClick = async () => {
+    if (progress.progressData[module_id].played[audio_id] !== true) {
+      await dispatch({
+        type: 'INCREMENT_PROGRESS',
+        payload: {
+          module_id,
+          audio_id,
+          percent: 10
+        }
+      })
+    }
     if (current.paused == true) {
       current.play();
     }
@@ -13,6 +32,16 @@ function Hero(props) {
       current.pause();
     }
   }
+
+  useEffect(async () => {
+    if (user && user.uid) {
+      await axios.post('http://localhost:5000/progress/update', {
+        uuid: user.uid,
+        update: progress.progressData
+      })
+    }
+  }, [progress.progressData])
+
   return (
 
     <div className="col-lg-12 container">
