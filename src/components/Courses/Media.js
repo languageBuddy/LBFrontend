@@ -10,18 +10,19 @@ function Hero(props) {
   var current = new Audio(audio_url);
 
   const progress = useSelector(state => state.progress)
+  const audio = useSelector(state => state.audio)
   const dispatch = useDispatch()
 
   const auth = getAuth();
   const user = auth.currentUser;
-  const handleClick = async () => {
+  const handleClick = () => {
     if (user && user.email && progress.progressData[module_id].played[audio_id] !== true) {
-      await dispatch({
+      dispatch({
         type: 'INCREMENT_PROGRESS',
         payload: {
           module_id,
           audio_id,
-          percent: 10
+          percent: Math.round(100 / audio.audios[module_id - 1].audios.length)
         }
       })
     }
