@@ -9,16 +9,14 @@ function Learn() {
     const audio = useSelector(state => state.audio)
 
     const [state, setstate] = useState(audio.audios[id - 1])
-    console.log("state")
-    console.log(state)
+
     return (
         <div className="dash-container">
             <Navbar />
             <br /> <br />
             {
                 state && state.audios && state.audios.map(aud => {
-                    return <Media key={aud.audio_id} {...aud} ImageUrl={state.module_img_url} />
-                    
+                    return <Media key={aud.audio_id} {...aud} ImageUrl={state.module_img_url} module_id={id} />
                 })
             }
         </div>

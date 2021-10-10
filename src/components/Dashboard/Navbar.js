@@ -7,13 +7,21 @@ import {
 import Avatar from '../../assets/img/Avatar/programmer.png'
 import { Link, withRouter } from 'react-router-dom'
 import { getAuth, signOut } from '@firebase/auth';
+import { useDispatch } from 'react-redux'
 
 const Navbar = ({ history }) => {
+
+    const [profile, setprofile] = useState({name: "", imageUrl: ""})
+    const dispatch = useDispatch()
     const logout = () => {
         signOut(auth)
             .then(() => {
+                dispatch({
+                    type: 'USER_LOGGED_OUT'
+                })
                 localStorage.removeItem('token')
                 history.push('/')
+                // window.location.reload()
             })
             .catch((e) => alert(e.message))
     }
@@ -29,13 +37,18 @@ const Navbar = ({ history }) => {
     const auth = getAuth();
     const user = auth.currentUser;
     console.log(user)
-    const [profile, setprofile] = useState({
-        name: user ? user.displayName : "",
-        imageUrl: "",
-    })
+    useEffect(()=>{
+        if(user){
+            setprofile({
+                name: user.displayName,
+                imageUrl: user.photoURL,
+            })
+        }
+
+    }, [user])
 
     return (
-        
+
         <header className="p-3 bg-dark text-white">
             <div className="container-fluid">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -47,6 +60,7 @@ const Navbar = ({ history }) => {
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><Link to="/" className="nav-link px-2 text-secondary"> HOME </Link></li>
+                        {/* <li><Link to="/dashboard/about" className="nav-link px-2 text-white">ABOUT</Link></li> */}
                         <li><Link to="/dashboard/exam" className="nav-link px-2 text-white"> EXAM</Link></li>
                     </ul>
 
@@ -57,7 +71,7 @@ const Navbar = ({ history }) => {
                         <Dropdown.Menu className="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <Dropdown.Item>
                                 <Card style={{ width: '18rem', paddingTop: "10px" }} className="d-flex flex-column justify-content-center align-items-center">
-                                    <Card.Img variant="top" src={Avatar} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
+                                    <Card.Img variant="top" src={profile.imageUrl} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
                                     <Card.Body className="text-center">
                                         <Card.Title >{profile.name}</Card.Title>
                                         <Card.Text>

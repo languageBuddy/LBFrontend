@@ -54,15 +54,15 @@ function Exam() {
                 dispatch(fetchQuestion(response.data))
                 setquestions(response.data)
             }).catch(error => {
-                console.log(error)
+                console.error(error)
             })
     }, [counter.showscore])
 
-    if(questions && questions[counter.currentQuestion - 1] )
-    var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
+    if (questions && questions[counter.currentQuestion - 1])
+        var current = new Audio(questions[counter.currentQuestion].questionAudioUrl)
 
 
-   
+
 
     const auth = getAuth();
 
@@ -101,14 +101,14 @@ function Exam() {
                                 </div>
                                 <div className='question-text'>
                                     <h4 className="heading">{questions && questions[counter.currentQuestion] && questions[counter.currentQuestion].questionText} </h4>
-                                    <button onClick={playOrPause} className="btn btn-primary"> <i class="bi bi-play-circle"></i> Play/Pause</button>
+                                    <button onClick={playOrPause} className="btn btn-primary btn-block"> <i class="bi bi-play-circle"></i> Play/Pause</button>
                                 </div>
                             </div>
                             <div className='answer-section'>
                                 {
                                     questions.length > 0 && questions[counter.currentQuestion] && questions[counter.currentQuestion].answerOptions.map(option => {
                                         return (
-                                            <button className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
+                                            <button key={option._id} className="exam-button" onClick={() => handleButtonClick(option.isCorrect)}>{option.answerText}</button>
                                         )
                                     })
                                 }

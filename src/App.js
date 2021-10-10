@@ -11,12 +11,13 @@ import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
 
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 import { Switch, Route } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 require('dotenv').config();
+
 
 console.log(`${process.env.REACT_APP_AID}`);
 
@@ -33,10 +34,10 @@ initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
-  const[show,setShow] = useState(true);
+  const [show, setShow] = useState(true);
 
-  const handleClick =()=>{
-    
+  const handleClick = () => {
+
     setShow(false);
 
   }
@@ -47,18 +48,20 @@ function App() {
     })
   }, [])
 
-if(isMobile && show){
+  if (isMobile && show) {
 
-  return(
-    <div>
-      <h2>We recommend you to use desktop for better experience</h2>
-      <button style={{cursor:'pointer'}} onClick={handleClick}>Continue</button>
-    </div>
-  )
+    return (
+      <div>
+        <h1>Hello</h1>
+        <button onClick={handleClick}>Continue</button>
+      </div>
 
-}
+    )
+
+  }
 
   return (
+
     <Switch>
       <Route path="/" exact component={Main} />
       <Route path="/login" exact component={Login} />
@@ -67,11 +70,12 @@ if(isMobile && show){
       <Route path="/dashboard/learn/:id" exact component={Learn} />
       <Route path="/dashboard/exam" exact component={Exam} />
       <Route path="/dashboard/exam/answer" exact component={Answer} />
-      <Route path="/verify" exact component={Verify}/>
-      <Route path="/forgot-password" exact component={forgotPassword}/>
-      <Route path="/please-login" exact component={pleaseLogin}/>
+      <Route path="/verify" exact component={Verify} />
+      <Route path="/forgot-password" exact component={forgotPassword} />
+      <Route path="/please-login" exact component={pleaseLogin} />
       <Route path="*" component={NotFound} />
     </Switch>
+
   );
 }
 

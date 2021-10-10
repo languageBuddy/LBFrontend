@@ -1,11 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import './course.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+
+import { getAuth } from '@firebase/auth';
 
 function Hero(props) {
-
-  const { audio_id, audio_url, audio_text, ImageUrl } = props
+  const { audio_id, audio_url, audio_text, ImageUrl, module_id } = props
   var current = new Audio(audio_url);
+
+  const progress = useSelector(state => state.progress)
+  const audio = useSelector(state => state.audio)
+  const dispatch = useDispatch()
+
+  const auth = getAuth();
+  const user = auth.currentUser;
   const handleClick = () => {
+    if (user && user.email && progress.progressData[module_id].played[audio_id] !== true) {
+      dispatch({
+        type: 'INCREMENT_PROGRESS',
+        payload: {
+          module_id,
+          audio_id,
+          percent: Math.round(100 / audio.audios[module_id - 1].audios.length)
+        }
+      })
+    }
     if (current.paused == true) {
       current.play();
     }
@@ -13,6 +33,16 @@ function Hero(props) {
       current.pause();
     }
   }
+
+  useEffect(async () => {
+    if (user && user.uid) {
+      await axios.post('http://localhost:5000/progress/update', {
+        uuid: user.uid,
+        update: progress.progressData
+      })
+    }
+  }, [progress.progressData])
+
   return (
 
     <div className="col-lg-12 container">
@@ -25,17 +55,17 @@ function Hero(props) {
         </div>
         <div className="text-container w-100">
           <div className="text-left mb-3">
-            <label for="itemValue mb-1">Bengali </label>
+            <label htmlFor="itemValue mb-1">Bengali </label>
             <h3>{audio_text.bangla_text.benglish} </h3>   {/* Bengali translation in english */}
             <h4>{audio_text.bangla_text.bangla} </h4> {/* bengali translation in bengali  */}
           </div>
           <div className="text-left mb-3">
-            <label for="itemValue mb-1 pe-2" >English (IN)</label>
+            <label htmlFor="itemValue mb-1 pe-2" >English (IN)</label>
             <h3>{audio_text.english}</h3>  {/* english translation */}
           </div>
 
           <div className="text-lef">
-            <label for="itemValue" >Hindi</label>
+            <label htmlFor="itemValue" >Hindi</label>
             <h3>{audio_text.hindi_text.hinglish} </h3>  {/* Hindi translation in english */}
             <h4> {audio_text.hindi_text.hindi} </h4>      {/* Hindi translation in Hindi  */}
           </div>

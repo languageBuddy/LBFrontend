@@ -12,7 +12,9 @@ import {
   Grid,
   Typography,
   createTheme,
-  ThemeProvider
+  ThemeProvider,
+  Alert,
+  AlertTitle,
 } from '@mui/material'
 import GoogleButton from 'react-google-button'
 import { Link as Rlink } from 'react-router-dom';
@@ -20,23 +22,25 @@ import { useEffect, useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import LoginImg from '../../assets/img/Auth/loginImage.svg'
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useDispatch } from 'react-redux'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setmessage] = useState("")
 
   const SignInWithGoogle = () => {
     setLoading(true)
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
-    .then((userCredential) => {
-      localStorage.setItem('token', userCredential._tokenResponse.idToken);
-      history.push('/dashboard')
-    })
-    .catch(e => alert(e.message))
-    .finally(() => setLoading(false))
+      .then((userCredential) => {
+        localStorage.setItem('token', userCredential._tokenResponse.idToken);
+        history.push('/dashboard')
+      })
+      .catch(e => alert(e.message))
+      .finally(() => setLoading(false))
 
   }
   const onLogin = () => {
@@ -45,18 +49,27 @@ const Login = ({ history }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         localStorage.setItem('token', userCredential._tokenResponse.idToken);
-        if(auth.currentUser.emailVerified){history.push('/dashboard')}
-        else {alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
-        auth.signOut();}
+        if (auth.currentUser.emailVerified) { history.push('/dashboard') }
+        else {
+          alert(`Your email is not verfied. Please check inbox of your email: ${email} for verification before proceeding forward.`);
+          auth.signOut();
+        }
       })
-      .catch(e => alert(e.message))
+      .catch(e => setmessage(e.message))
       .finally(() => setLoading(false))
   }
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch({
+      type: 'USER_LOGGED_OUT'
+    })
+  }, [])
 
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-       <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary"/> by Language Buddy Team</strong>
+        <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary" /> by Language Buddy Team</strong>
       </Typography>
     );
   }
@@ -67,10 +80,10 @@ const Login = ({ history }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
   return (
@@ -141,6 +154,13 @@ const Login = ({ history }) => {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+              {
+                message.length > 0 &&
+                <Alert severity="error">
+                  <AlertTitle>Error</AlertTitle>
+                  <strong> {message}</strong>
+                </Alert>
+              }
               <Button
                 type="submit"
                 fullWidth
