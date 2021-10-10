@@ -4,7 +4,6 @@ import Login from './components/Auth/SignInSide'
 import Register from './components/Auth/SignUp'
 import Dashboard from './components/Dashboard/index'
 import Learn from './components/Dashboard/Learn'
-import About from './components/About/index';
 import Exam from './components/Exam/index'
 import Answer from './components/Exam/Answer'
 import NotFound from './components/NotFound'
@@ -66,7 +65,6 @@ if(isMobile && show){
       <Route path="/register" exact component={Register} />
       <Route path="/dashboard" exact component={Dashboard} />
       <Route path="/dashboard/learn/:id" exact component={Learn} />
-      <Route path="/dashboard/about" exact component={About} />
       <Route path="/dashboard/exam" exact component={Exam} />
       <Route path="/dashboard/exam/answer" exact component={Answer} />
       <Route path="/verify" exact component={Verify}/>

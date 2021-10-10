@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getAuth } from '@firebase/auth';
 
 function Header() {
+    const auth=getAuth();
+    var user=auth.currentUser;
+    var path="/login";
+    if(user){
+        path="/dashboard";
+    }
     return (
         <>
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -35,7 +42,7 @@ function Header() {
                     </nav>
                     {/* navbar  */}
 
-                    <Link to="/login" className="appointment-btn scrollto"><span className="d-none d-md-inline"> Let's Get</span> Started</Link>
+                    <Link to={path} className="appointment-btn scrollto"><span className="d-none d-md-inline"> Let's Get</span> Started</Link>
 
                 </div>
             </header>

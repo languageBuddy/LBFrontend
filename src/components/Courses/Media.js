@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Image from '../../assets/img/courses/img_1.jpg'
 import './course.scss'
 
 function Hero(props) {
+
   const { audio_id, audio_url, audio_text, ImageUrl } = props
   var current = new Audio(audio_url);
   const handleClick = () => {

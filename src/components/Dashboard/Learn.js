@@ -18,6 +18,7 @@ function Learn() {
             {
                 state && state.audios && state.audios.map(aud => {
                     return <Media key={aud.audio_id} {...aud} ImageUrl={state.module_img_url} />
+                    
                 })
             }
         </div>
