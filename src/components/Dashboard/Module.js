@@ -23,6 +23,11 @@ function Module(props) {
                 }
             })
         }
+
+        if (percentage > 100) {
+            setpercentage(100)
+        }
+
     }, [progress.progressData])
 
     return (

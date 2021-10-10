@@ -10,6 +10,11 @@ import { getAuth, signOut } from '@firebase/auth';
 import { useDispatch } from 'react-redux'
 
 const Navbar = ({ history }) => {
+    const [profile, setprofile] = useState({
+        name: "",
+        imageUrl: ""
+    })
+
     const dispatch = useDispatch()
     const logout = () => {
         signOut(auth)
@@ -35,10 +40,15 @@ const Navbar = ({ history }) => {
     const auth = getAuth();
     const user = auth.currentUser;
     // console.log(user)
-    const [profile, setprofile] = useState({
-        name: user ? user.displayName : "",
-        imageUrl: user ? user.photoURL : "",
-    })
+
+    useEffect(() => {
+        if (user) {
+            setprofile({
+                name: user.displayName,
+                imageUrl: user.photoURL
+            })
+        }
+    }, [user])
 
     return (
 

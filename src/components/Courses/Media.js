@@ -22,7 +22,7 @@ function Hero(props) {
         payload: {
           module_id,
           audio_id,
-          percent: Math.round(100 / audio.audios[module_id - 1].audios.length)
+          percent: Math.ceil(100 / audio.audios[module_id - 1].audios.length)
         }
       })
     }
