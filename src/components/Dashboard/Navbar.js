@@ -78,7 +78,7 @@ const Navbar = ({ history }) => {
                                     <Card.Body className="text-center">
                                         <Card.Title >{profile.name}</Card.Title>
                                         <Card.Text>
-                                            HAPPY TO SEE U
+                                            HAPPY TO SEE YOU 😄
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="text-center">

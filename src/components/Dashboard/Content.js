@@ -15,14 +15,14 @@ function Content() {
     const user = auth.currentUser;
 
     useEffect(async () => {
-        axios.get('http://localhost:5000/db/fetch')
+        axios.get('/db/fetch')
             .then(response => {
                 dispatch(fetchAudio(response.data))
             }).catch(error => {
                 console.error(error)
             })
         if (user && user.uid) {
-            axios.post('http://localhost:5000/progress/fetch', {
+            axios.post('/progress/fetch', {
                 uuid: user.uid
             }).then(response => {
                 if (response.data !== "") {

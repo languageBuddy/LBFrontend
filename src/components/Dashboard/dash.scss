@@ -186,15 +186,19 @@
  
  @media screen and (max-width: 767px) {
     .dash-content {
-       padding-top: 300px;
+       padding-top: 50px;
+       display: flex;
        flex-direction: column;
+      //  justify-content: center;
+       align-items: center;
     }
  }
  
  .dash-card {
     width: 100%;
-    max-width: 300px;
-    min-width: 200px;
+   //  max-width: 300px;
+   //  min-width: 200px;
+   width: 300px;
     height: 250px;
     background-color: #292929;
     margin: 30px 10px ;
@@ -279,7 +283,7 @@
  
  .dash-card:hover .dash-icon i {
     background: linear-gradient(90deg, #FF7E7E, #FF4848);
-    -webkit-background-clip: text; 
+   //  -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;
     opacity: 1;
     transition: all 0.3s ease;
@@ -288,6 +292,6 @@
 .progressBar{
    position: absolute;
    top: 10px;
-   left: 1rem;
-   width: 88%;
+   left: 1.7rem;
+   width: 85%;
 }

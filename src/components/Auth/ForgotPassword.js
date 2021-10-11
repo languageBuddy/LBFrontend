@@ -27,7 +27,7 @@ const ForgotPassword = ({ history }) => {
   const [sent, isSent] = useState(false);
 
   const actionCodeSettings = {
-    url: 'http://localhost:3000/login',
+    url: '/login',
     // This must be true.
     handleCodeInApp: true,
   };
@@ -36,22 +36,22 @@ const ForgotPassword = ({ history }) => {
     isSent(false);
     const auth = getAuth();
     sendPasswordResetEmail(auth, email, actionCodeSettings)
-    .then(() => {
+      .then(() => {
         isSent(true);
         alert(`Password reset instructions sent to your email: ${email}. Check your inbox to reset your account password.`)
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(`Error Code: ${errorCode}\nMessage: ${errorMessage}`);
-    })
-    .finally(()=>isSent(true));
+      })
+      .finally(() => isSent(true));
   }
 
   function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary"/> by Language Buddy Team</strong>
+        <strong> Made with <FavoriteIcon style={{ fontSize: 20 }} color="secondary" /> by Language Buddy Team</strong>
       </Typography>
     );
   }

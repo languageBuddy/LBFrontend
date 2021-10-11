@@ -39,7 +39,7 @@ const Signup = ({ history }) => {
 
 
   const actionCodeSettings = {
-    url: 'http://localhost:3000/login',
+    url: '/login',
     // This must be true.
     handleCodeInApp: true,
   };

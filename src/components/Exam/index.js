@@ -49,7 +49,7 @@ function Exam() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/exam/fetch')
+        axios.get('/exam/fetch')
             .then(response => {
                 dispatch(fetchQuestion(response.data))
                 setquestions(response.data)
