@@ -55,7 +55,6 @@ function App() {
         <h1>Hello</h1>
         <button onClick={handleClick}>Continue</button>
       </div>
-
     )
 
   }
