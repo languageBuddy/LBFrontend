@@ -10,7 +10,6 @@ import NotFound from './components/NotFound'
 import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
-
 import { isMobile } from 'react-device-detect';
 
 import { Switch, Route } from 'react-router-dom'
