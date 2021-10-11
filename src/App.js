@@ -10,7 +10,6 @@ import NotFound from './components/NotFound'
 import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
-
 import { isMobile } from 'react-device-detect';
 
 import { Switch, Route } from 'react-router-dom'
@@ -51,9 +50,23 @@ function App() {
   if (isMobile && show) {
 
     return (
-      <div>
-        <h1>Hello</h1>
-        <button onClick={handleClick}>Continue</button>
+      <div className="w-100 d-flex justify-content-center align-items-center" style={{
+        height: "100vh",
+        backgroundColor: "#fafafa"
+      }}>
+        <div class="card" style={{ width: "18rem" }}>
+          <img class="card-img-top" src="https://res.cloudinary.com/dsrpn6k2o/image/upload/v1633953527/Mobile_t3gt32.png" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title fw-bold"> Welcome to Language Buddy!</h5>
+            <p class="card-text" style={{
+              fontFamily: "Open Sans, sans-serif"
+            }}> Although the site has been configured for mobile, we recommend you to use
+              desktop for better experience.</p>
+            <div className="w-100 d-flex justify-content-center" >
+              <button className="btn btn-primary" onClick={handleClick}> Continue </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
 
