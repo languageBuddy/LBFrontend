@@ -11,7 +11,7 @@ import NotFound from './components/NotFound'
 import Verify from './components/Auth/verify'
 import forgotPassword from './components/Auth/ForgotPassword'
 import pleaseLogin from './components/Auth/pleaseLogin'
-
+import './Recipe_Card.css';
 import {isMobile} from 'react-device-detect';
 
 import { Switch, Route } from 'react-router-dom'
@@ -52,10 +52,28 @@ function App() {
 if(isMobile && show){
 
   return( 
-   <div>
-     <h1>Hello</h1>
-     <button onClick={handleClick}>Continue</button>
-   </div>
+    <body>
+    <div className="card-container">
+
+
+        <div className="card one">
+          <div className="recipeimg"></div>
+          <div className="cardtext">
+            <div className="cardheading">
+              Welcome to Language Buddy!
+            </div>
+            <div className="cardcontent">
+            Although the site has been configured for mobile, we recommend you to use 
+            desktop for better experience.
+            </div>
+           {/* <a href="#" className="cta">View Recipe</a> */}
+           <button className="cta" onClick={handleClick}>Continue</button>
+          </div>
+        </div>
+          
+      
+        </div>
+</body>
  
   )
 

@@ -1,0 +1,104 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.card-container {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
+  /* flex-wrap: wrap; */
+  width: 100%;
+  height: 100vh;
+  /* background-color: #0B6E4F; */
+}
+
+.card {
+   /* margin-left: 2%; */
+  display: inline-block;
+  /* flex-direction: column; */
+  border-radius: 8px;
+  background-color: #fafafa;
+  border: 2px solid rgba(0, 0, 0, .10);
+  width: 30%;
+  margin-top: 20px;
+  box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+@media screen and (max-width:715px) {
+  .card{
+    width: 40%;
+    margin-top: 20px;
+  }
+  
+}
+
+@media screen and (max-width:600px) {
+  .card{
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 30px;
+  }
+  .one{
+    margin-top: 0px;
+  }
+  
+}
+
+  .recipeimg {
+    background: url('https://res.cloudinary.com/dsrpn6k2o/image/upload/v1633945148/Photo/Mobile_3_rgxflq.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+   
+  }
+  
+  .cardtext {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem 2rem 2rem;
+   
+  }
+  
+  .cardheading {
+    padding-top: 40px;
+    color: #313135;
+    font-weight: 700;
+    font-size: 24px;
+  }
+  
+  .cardcontent {
+    padding-top: 10px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #59595C;
+    margin-bottom: 40px;
+  }
+
+
+.cta {
+  justify-self: flex-end;
+  text-decoration: none;
+  color: #f2f2f2;
+  background-color: #0B6E4F;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 15px 45px;
+  /* width: 19rem; */
+  text-align: center;
+  box-shadow: 2px 4px 12px rgba(10, 88, 64, 0.2);
+}
+
+.cta:hover {
+  box-shadow: 2px 4px 12px rgba(10, 88, 64, 0.35);
+}
+
