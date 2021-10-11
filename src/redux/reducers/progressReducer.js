@@ -40,7 +40,7 @@ function progressReducer(state = initialState, action) {
                     ...state.progressData,
                     [action.payload.module_id]: {
                         ...state.progressData[action.payload.module_id],
-                        percentage: state.progressData[action.payload.module_id].percentage + action.payload.percent,
+                        percentage: state.progressData[action.payload.module_id].percentage + action.payload.percent > 100 ? 100 : state.progressData[action.payload.module_id].percentage + action.payload.percent,
                         played: {
                             ...state.progressData[action.payload.module_id].played,
                             [action.payload.audio_id]: true
