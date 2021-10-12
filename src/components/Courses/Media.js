@@ -70,6 +70,15 @@ function Hero(props) {
             <h4> {audio_text.hindi_text.hindi} </h4>      {/* Hindi translation in Hindi  */}
           </div>
         </div>
+        <div className="m-3">
+          {
+            progress && progress.progressData &&
+            progress.progressData[module_id].played[audio_id] &&
+            < span >
+              <i class="bi bi-check-circle-fill text-success fs-4"></i>
+            </span>
+          }
+        </div>
       </div>
     </div >
   )
