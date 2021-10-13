@@ -49,7 +49,7 @@ function Exam() {
     }
 
     useEffect(() => {
-        axios.get('/exam/fetch')
+        axios.get('https://languagebuddy.herokuapp.com/exam/fetch')
             .then(response => {
                 dispatch(fetchQuestion(response.data))
                 setquestions(response.data)

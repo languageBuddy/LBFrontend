@@ -36,7 +36,7 @@ function Hero(props) {
 
   useEffect(async () => {
     if (user && user.uid) {
-      await axios.post('/progress/update', {
+      await axios.post('https://languagebuddy.herokuapp.com/progress/update', {
         uuid: user.uid,
         update: progress.progressData
       })

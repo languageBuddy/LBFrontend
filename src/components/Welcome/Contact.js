@@ -27,7 +27,7 @@ function Contact() {
 
             return;
         }
-        axios.post('/mail/send', state)
+        axios.post('https://languagebuddy.herokuapp.com/mail/send', state)
             .then(response => {
                 setnotification({
                     message: response.data.msg,

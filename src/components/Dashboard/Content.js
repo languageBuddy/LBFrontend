@@ -15,14 +15,14 @@ function Content() {
     const user = auth.currentUser;
 
     useEffect(async () => {
-        axios.get('/db/fetch')
+        axios.get('https://languagebuddy.herokuapp.com/db/fetch')
             .then(response => {
                 dispatch(fetchAudio(response.data))
             }).catch(error => {
                 console.error(error)
             })
         if (user && user.uid) {
-            axios.post('/progress/fetch', {
+            axios.post('https://languagebuddy.herokuapp.com/progress/fetch', {
                 uuid: user.uid
             }).then(response => {
                 if (response.data !== "") {
