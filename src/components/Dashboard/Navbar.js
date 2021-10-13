@@ -76,7 +76,7 @@ const Navbar = ({ history }) => {
                             <Dropdown.Item>
                                 <Card style={{ width: '18rem', paddingTop: "10px" }} className="d-flex flex-column justify-content-center align-items-center">
                                     {
-                                        profile && progile.imageUrl ?
+                                        profile && profile.imageUrl ?
                                             <Card.Img variant="top" src={profile.imageUrl} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
                                             : <Card.Img variant="top" src={Avatar} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
 
