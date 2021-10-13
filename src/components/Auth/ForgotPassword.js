@@ -27,7 +27,7 @@ const ForgotPassword = ({ history }) => {
   const [sent, isSent] = useState(false);
 
   const actionCodeSettings = {
-    url: '/login',
+    url: 'https://languagebuddy.netlify.app/login',
     // This must be true.
     handleCodeInApp: true,
   };

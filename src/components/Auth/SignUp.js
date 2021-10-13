@@ -39,7 +39,7 @@ const Signup = ({ history }) => {
 
 
   const actionCodeSettings = {
-    url: '/login',
+    url: 'https://languagebuddy.netlify.app/login',
     // This must be true.
     handleCodeInApp: true,
   };
