@@ -43,6 +43,7 @@ function Hero(props) {
     }
   }, [progress.progressData])
 
+
   return (
 
     <div className="col-lg-12 container">

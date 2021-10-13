@@ -19,11 +19,11 @@ const Navbar = ({ history }) => {
     const logout = () => {
         signOut(auth)
             .then(() => {
+                localStorage.removeItem('token')
+                history.push('/')
                 dispatch({
                     type: 'USER_LOGGED_OUT'
                 })
-                localStorage.removeItem('token')
-                history.push('/')
                 // window.location.reload()
             })
             .catch((e) => alert(e.message))
