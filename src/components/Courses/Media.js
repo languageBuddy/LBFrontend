@@ -16,7 +16,7 @@ function Hero(props) {
   const auth = getAuth();
   const user = auth.currentUser;
   const handleClick = () => {
-    if (user && user.email && progress.progressData[module_id].played[audio_id] !== true) {
+    if (user && user.uid && progress.progressData[module_id].played[audio_id] !== true) {
       dispatch({
         type: 'INCREMENT_PROGRESS',
         payload: {
@@ -36,7 +36,7 @@ function Hero(props) {
 
   useEffect(async () => {
     if (user && user.uid) {
-      await axios.post('http://localhost:5000/progress/update', {
+      await axios.post('/progress/update', {
         uuid: user.uid,
         update: progress.progressData
       })

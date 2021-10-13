@@ -41,11 +41,12 @@ const Navbar = ({ history }) => {
     const user = auth.currentUser;
     // console.log(user)
 
-    useEffect(() => {
+    useEffect(async () => {
         if (user) {
-            setprofile({
+            console.log(user)
+            await setprofile({
                 name: user.displayName,
-                imageUrl: user.photoURL
+                imageUrl: user ? user.photoURL : ""
             })
         }
     }, [user])
@@ -74,7 +75,12 @@ const Navbar = ({ history }) => {
                         <Dropdown.Menu className="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <Dropdown.Item>
                                 <Card style={{ width: '18rem', paddingTop: "10px" }} className="d-flex flex-column justify-content-center align-items-center">
-                                    <Card.Img variant="top" src={profile.imageUrl} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
+                                    {
+                                        profile && progile.imageUrl ?
+                                            <Card.Img variant="top" src={profile.imageUrl} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
+                                            : <Card.Img variant="top" src={Avatar} style={{ width: '10rem', height: "10rem" }} className="text-center border border-2 border-dark rounded-circle" />
+
+                                    }
                                     <Card.Body className="text-center">
                                         <Card.Title >{profile.name}</Card.Title>
                                         <Card.Text>

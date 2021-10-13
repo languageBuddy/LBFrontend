@@ -27,7 +27,7 @@ function Contact() {
 
             return;
         }
-        axios.post('http://localhost:5000/send', state)
+        axios.post('/mail/send', state)
             .then(response => {
                 setnotification({
                     message: response.data.msg,
