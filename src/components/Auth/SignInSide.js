@@ -172,9 +172,9 @@ const Login = ({ history }) => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link to="/forgot-password" variant="body2">
+                  <RLink to="/forgot-password" variant="body2">
                     Forgot password?
-                  </Link>
+                  </RLink>
                 </Grid>
                 <Grid item>
                   <Rlink to="/register">
