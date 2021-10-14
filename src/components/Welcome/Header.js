@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { getAuth } from '@firebase/auth';
 
 function Header() {
-    const auth=getAuth();
-    var user=auth.currentUser;
-    var path="/login";
-    if(user){
-        path="/dashboard";
+    const auth = getAuth();
+    var user = auth.currentUser;
+    var path = "/login";
+    if (user) {
+        path = "/dashboard";
     }
     return (
         <>
@@ -41,7 +41,7 @@ function Header() {
                     </nav>
                     {/* navbar  */}
 
-                    <Link to={path} className="appointment-btn scrollto"><span className="d-none d-md-inline"> Let's Get</span> Started</Link>
+                    <Link to={path} className="appointment-btn scrollto d-none d-md-inline"> Let's  Get Started</Link>
 
                 </div>
             </header>

@@ -23,14 +23,14 @@ function Answer() {
         return <Redirect to="/please-login" />;
     }
     else {
-        return ( <>
+        return (<>
             <div className="contaier m-3">
                 {
                     questions && questions.map(question => {
 
                         return (
-                            <div class="card mb-3" style={{ marginLeft: "30px", marginRight: "30px" }} key={question.questionText}>
-                                <div class="card-header">
+                            <div class="card mb-3" key={question.questionText}>
+                                <div class="card-header d-flex flex-wrap">
                                     <audio id="song" controls>
                                         <source src={question.questionAudioUrl} type="audio/mp3" />
                                     </audio>
@@ -39,19 +39,19 @@ function Answer() {
                                     <h5 class="card-title" style={{ color: "#DEF2F1" }}> Correct Answer : {question.answerOptions[question.correct - 1].answerText}</h5>
                                 </div>
                             </div>
-                            
+
                         )
                     })
                 }
             </div>
 
-<footer id="footer">
+            <footer id="footer">
 
-<div class="footer-copyright text-center py-3">© 2021 <strong>LANGUAGEBUDDY</strong>.
-ALL RIGHTS RESERVED.
-  </div>
-          
-        </footer>
+                <div class="footer-copyright text-center py-3">© 2021 <strong>LANGUAGEBUDDY</strong>.
+                    ALL RIGHTS RESERVED.
+                </div>
+
+            </footer>
         </>
         )
     }

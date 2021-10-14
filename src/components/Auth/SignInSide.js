@@ -171,15 +171,15 @@ const Login = ({ history }) => {
                 {loading ? 'Logging you in ...' : 'Login'}
               </Button>
               <Grid container>
-                <Grid item xs>
+                <Grid item xs className="p-1">
                   <Rlink to="/forgot-password" variant="body2">
                     Forgot password?
                   </Rlink>
                 </Grid>
-                <Grid item>
+                <Grid item className="p-1">
                   <Rlink to="/register">
                     <Link variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      Don't have an account? Sign Up
                     </Link>
                   </Rlink>
                 </Grid>

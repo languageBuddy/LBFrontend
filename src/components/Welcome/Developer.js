@@ -16,9 +16,13 @@ function Developer() {
                         <div className="swiper-slide">
                             <div className="testimonial-wrap">
                                 <div className="testimonial-item">
-                                    <img src={Img2} className="testimonial-img" alt="" />
-                                    <h3> <a href="https://www.linkedin.com/mwlite/in/anubhab-ray" target="_blank"> Anubhab Ray </a> </h3>
-                                    <h4> Developer </h4>
+                                    <div className="d-flex">
+                                        <img src={Img2} className="testimonial-img" alt="" />
+                                        <div>
+                                            <h3> <a href="https://www.linkedin.com/mwlite/in/anubhab-ray" target="_blank"> Anubhab Ray </a> </h3>
+                                            <h4> Developer </h4>
+                                        </div>
+                                    </div>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
                                         Hello wanderer, I am  like a ninja monitoring the social media in stealth mode waiting for opportune moment to- nah I am just an introvert.
@@ -32,9 +36,13 @@ function Developer() {
                         <div className="swiper-slide">
                             <div className="testimonial-wrap">
                                 <div className="testimonial-item">
-                                    <img src={Img3} className="testimonial-img" alt="" />
-                                    <h3> <a href="https://www.linkedin.com/in/kartikeya-singh-" target="_blank"> Kartikeya Singh  </a> </h3>
-                                    <h4>Developer </h4>
+                                    <div className="d-flex">
+                                        <img src={Img3} className="testimonial-img" alt="" />
+                                        <div>
+                                            <h3> <a href="https://www.linkedin.com/in/kartikeya-singh-" target="_blank"> Kartikeya Singh  </a> </h3>
+                                            <h4>Developer </h4>
+                                        </div>
+                                    </div>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
                                         Hello there, thanks for logging into language Buddy. My Epic games ID is: Sygamar. Hit me up if you wanna play some Rocket League.
@@ -48,12 +56,16 @@ function Developer() {
                         <div className="swiper-slide">
                             <div className="testimonial-wrap">
                                 <div className="testimonial-item">
-                                    <img src={Img1} className="testimonial-img" alt="" />
-                                    <h3><a href="https://www.linkedin.com/in/shubham-thorat-8985151a9/" target="_blank"> Shubham Thorat </a> </h3>
-                                    <h4>Developer</h4>
+                                    <div className="d-flex">
+                                        <img src={Img1} className="testimonial-img" alt="" />
+                                        <div>
+                                            <h3><a href="https://www.linkedin.com/in/shubham-thorat-8985151a9/" target="_blank"> Shubham Thorat </a> </h3>
+                                            <h4>Developer</h4>
+                                        </div>
+                                    </div>
                                     <p>
                                         <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                      Hey there, welcome to Language Buddy. If I am not coding I am most likely playing a tabla.
+                                        Hey there, welcome to Language Buddy. If I am not coding I am most likely playing a tabla.
                                         <i className="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>

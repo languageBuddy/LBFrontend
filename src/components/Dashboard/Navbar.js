@@ -43,7 +43,7 @@ const Navbar = ({ history }) => {
 
     useEffect(async () => {
         if (user) {
-            console.log(user)
+            // console.log(user)
             await setprofile({
                 name: user.displayName,
                 imageUrl: user ? user.photoURL : ""
