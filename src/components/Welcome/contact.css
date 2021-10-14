@@ -101,3 +101,14 @@
       text-align: left;
     }
   }
+
+  @media(max-width:800px){
+   .contact form{
+     display: flex;
+     flex-direction: column;
+   }
+   .wrapper{
+     display: flex;
+     flex-direction: column;
+   }
+  }

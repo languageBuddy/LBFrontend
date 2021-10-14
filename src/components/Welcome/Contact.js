@@ -67,7 +67,7 @@ function Contact() {
                             </div>
                         }
 
-                        <form >
+                        <form>
                             <p>
                                 <label>Name</label>
                                 <input type="text" value={state.name} onChange={e => setstate({ ...state, name: e.target.value })} required />
